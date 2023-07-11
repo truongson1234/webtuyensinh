@@ -6,4 +6,47 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
+    <None Include="wwwroot\webfonts\fa-brands-400.eot" />
+    <None Include="wwwroot\webfonts\fa-brands-400.svg" />
+    <None Include="wwwroot\webfonts\fa-brands-400.ttf" />
+    <None Include="wwwroot\webfonts\fa-brands-400.woff" />
+    <None Include="wwwroot\webfonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\webfonts\fa-duotone-900.eot" />
+    <None Include="wwwroot\webfonts\fa-duotone-900.svg" />
+    <None Include="wwwroot\webfonts\fa-duotone-900.ttf" />
+    <None Include="wwwroot\webfonts\fa-duotone-900.woff" />
+    <None Include="wwwroot\webfonts\fa-duotone-900.woff2" />
+    <None Include="wwwroot\webfonts\fa-light-300.eot" />
+    <None Include="wwwroot\webfonts\fa-light-300.svg" />
+    <None Include="wwwroot\webfonts\fa-light-300.ttf" />
+    <None Include="wwwroot\webfonts\fa-light-300.woff" />
+    <None Include="wwwroot\webfonts\fa-light-300.woff2" />
+    <None Include="wwwroot\webfonts\fa-regular-400.eot" />
+    <None Include="wwwroot\webfonts\fa-regular-400.svg" />
+    <None Include="wwwroot\webfonts\fa-regular-400.ttf" />
+    <None Include="wwwroot\webfonts\fa-regular-400.woff" />
+    <None Include="wwwroot\webfonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\webfonts\fa-solid-900.eot" />
+    <None Include="wwwroot\webfonts\fa-solid-900.svg" />
+    <None Include="wwwroot\webfonts\fa-solid-900.ttf" />
+    <None Include="wwwroot\webfonts\fa-solid-900.woff" />
+    <None Include="wwwroot\webfonts\fa-solid-900.woff2" />
+    <None Include="wwwroot\webfonts\Montserrat-Bold.ttf" />
+    <None Include="wwwroot\webfonts\Montserrat-Bold.woff2" />
+    <None Include="wwwroot\webfonts\Montserrat-Regular.woff2" />
+    <None Include="wwwroot\webfonts\Roboto-Bold.woff2" />
+    <None Include="wwwroot\webfonts\Roboto-Medium.woff2" />
+    <None Include="wwwroot\webfonts\Roboto-Regular.woff2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WebCompiler" Version="1.0.1" />
+  </ItemGroup>
+
 </Project>

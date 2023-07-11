@@ -1,8 +1,139 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@section Styles
+{
+    <link href="~/css/pages/home.css" rel="stylesheet" />
+}
+<div class="home-introduce">
+    <div class="container pt-5 pb-3 d-flex justify-content-between h-100">
+        <div class="home-introduce__content">
+            <div class="home-introduce__title">
+                <h1 class="t1">Tuyển Sinh</h1>
+                <h2 class="t2">du học</h2>
+            </div>
+            <p class="home-introduce__article">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation nisi ut aliquip ex ea
+            </p>
+            <a href="#" class="home-introduce__btn-signin">Đăng ký ngay</a>
+        </div>
+        <form class="home-introduce__form px-3 pt-5 pb-4">
+            <button class="home-introduce__btn-close"><i class="fas fa-times"></i></button>
+            <h3 class="f1">ĐĂNG KÝ THÔNG TIN</h3>
+            <div class="mb-3 w-100">
+                <input type="text" class="form-control" placeholder="Họ và tên*">
+            </div>
+            <div class="mb-3 w-100">
+                <input type="text" class="form-control" placeholder="Địa chỉ*">
+            </div>
+            <div class="mb-3 w-100">
+                <input type="text" class="form-control" placeholder="Số điện thoại*">
+            </div>
+            <div class="mb-3 w-100">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Bậc học và đất nước quan tâm</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="mb-3 w-100">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Hình thức học</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="mb-3 w-100">
+                <input type="text" class="form-control" placeholder="Chuyên ngành hay đất nước bạn muốn đến?    ">
+            </div>
+            <button type="submit" class="btn btn-submit btn-primary">XÁC NHẬN</button>
+        </form>
+    </div>
+</div>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="home-reason py-5">
+    <div class="container">
+        <h1 class="home-reason__title mb-4">Tại sao chọn dịch vụ của chúng tôi?</h1>
+        <div class="home-reason__wrapper">
+            <div class="home-reason__item">
+                <div class="home-reason__icon mb-3" style="--hri-color: #E05194;">
+                    <i class="fal fa-alarm-clock"></i>
+                </div>
+                <p class="home-reason__name">Thời gian linh hoạt</p>
+            </div>
+            <div class="home-reason__item">
+                <div class="home-reason__icon mb-3" style="--hri-color: #AC85FF;">
+                    <i class="far fa-search"></i>
+                </div>
+                <p class="home-reason__name">Tìm kiếm địa điểm lý tưởng</p>
+            </div>
+            <div class="home-reason__item">
+                <div class="home-reason__icon mb-3" style="--hri-color: #AFB83B;">
+                    <i class="fal fa-clipboard-list-check"></i>
+                </div>
+                <p class="home-reason__name">Dễ dàng đăng ký</p>
+            </div>
+            <div class="home-reason__item">
+                <div class="home-reason__icon mb-3" style="--hri-color: #14AAF5;">
+                    <i class="fal fa-lightbulb-on"></i>
+                </div>
+                <p class="home-reason__name">Gợi ý vị trí tuyển dụng</p>
+            </div>
+            <div class="home-reason__item">
+                <div class="home-reason__icon mb-3" style="--hri-color: #FE753E;">
+                    <i class="fal fa-file-alt"></i>
+                </div>
+                <p class="home-reason__name">Cung cấp tài liệu</p>
+            </div>
+            <div class="home-reason__item">
+                <div class="home-reason__icon mb-3" style="--hri-color: #E05194;">
+                    <i class="fal fa-file-check"></i>
+                </div>
+                <p class="home-reason__name">Thủ tục nhanh chóng</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="home-news">
+    <div class="container">
+        <nav class="home-news__header row">
+            <div class="col-8 d-flex align-items-center">
+                <h3 class="home-news__topic">Tin tức &#8226;</h3>
+                <span class="home-news__hline"></span>
+            </div>
+            <div class="nav nav-tabs col-4" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+                    Tuyển sinh
+                </button>
+                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
+                    Du học
+                </button>
+                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">
+                    Xuất khẩu lao động
+                </button>
+            </div>
+        </nav>
+        <div class="home-news__wrapper row">
+            <div class="home-news__main col-8">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </div
+            <div class="home-news__extra">
+                <div class="tab-content col-4" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                        Nd1
+                    </div>
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+                        Nd2
+                    </div>
+                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+                        Nd3
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

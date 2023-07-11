@@ -1,0 +1,59 @@
+﻿header {
+    .topbar {
+        padding: 5px 0;
+        background: var(--1, #007DD1);
+
+        a {
+            &:hover {
+                color: #ffffff;
+            }
+
+            font-size: 13px;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .topbar__contactl {
+            a {
+            }
+        }
+    }
+
+    nav.navbar {
+        .navbar-brand {
+            height: 70px;
+        }
+
+        .navbar-nav .nav-link {
+            font-weight: 600;
+        }
+
+        .navbar-btn_search {
+            color: var(--1, #007DD1);
+            margin: 0 15px;
+            background: none;
+            border: none;
+            outline: none;
+        }
+
+        .navbar-btnlienhe {
+            color: var(--3, #FFF);
+            font-weight: 600;
+            text-decoration: none;
+            padding: 12px 16px;
+            border-radius: 56px;
+            background: var(--2, #F26725);
+        }
+    }
+}
+
+footer {
+    .bottombar {
+        font-weight: 400;
+        color: var(--ffffff, #FFF);
+        text-align: center;
+        padding: 5px 0;
+        background: var(--1, #007DD1);
+        line-height: normal;
+    }
+}
