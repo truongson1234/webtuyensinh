@@ -1,7 +1,21 @@
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<WebtuyensinhDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("WebtuyensinhDbContext") ?? throw new InvalidOperationException("Connection string 'WebtuyensinhDbContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddAuthentication(
+    CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(option => {
+            option.LoginPath = "/login";
+            option.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+        });
 
 var app = builder.Build();
 
@@ -18,7 +32,12 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "MyArea",
+    pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "default",
