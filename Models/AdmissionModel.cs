@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace webtuyensinh.Models
@@ -14,7 +15,9 @@ namespace webtuyensinh.Models
         public LevelOptions EducationLevel { get; set; }
         public TypeOptions TypeOfTraining { get; set; }
         public string Desire { get; set; }
-}
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+    }
 
     public enum LevelOptions
     {

@@ -11,5 +11,7 @@ namespace webtuyensinh.Models
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Role { get; set; } = "User";
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
     }
 }

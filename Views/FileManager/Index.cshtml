@@ -1,0 +1,77 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<!-- Include CKEditor 5 -->
+<div id="ckeditor-container">
+    <textarea name="content" id="editor"></textarea>
+</div>
+
+<!-- Include elFinder -->
+<div id="elfinder-container"></div>
+@section Scripts {
+
+    <script type="text/javascript">
+        //$(document).ready(function () {
+        //    var myCommands = elFinder.prototype._options.commands;
+
+        //    var disabled = ['callback', 'chmod', 'editor', 'netmount', 'ping', 'search', 'zipdl', 'help'];
+        //    elFinder.prototype.i18.en.messages.TextArea = "Edit";
+
+        //    $.each(disabled, function (i, cmd) {
+        //        (idx = $.inArray(cmd, myCommands)) !== -1 && myCommands.splice(idx, 1);
+        //    });
+
+        //    var options = {
+        //        baseUrl: "@Url.Content("~/lib/elfinder/")",
+        //        url: "@Url.Action("Connector")",
+        //        rememberLastDir: false,
+        //        commands: myCommands,
+        //        lang: 'vi',
+        //        uiOptions: {
+        //            toolbar: [
+        //                ['back', 'forward'],
+        //                ['reload'],
+        //                ['home', 'up'],
+        //                ['mkdir', 'mkfile', 'upload'],
+        //                ['open', 'download'],
+        //                ['undo', 'redo'],
+        //                ['info'],
+        //                ['quicklook'],
+        //                ['copy', 'cut', 'paste'],
+        //                ['rm'],
+        //                ['duplicate', 'rename', 'edit'],
+        //                ['selectall', 'selectnone', 'selectinvert'],
+        //                ['view', 'sort']
+        //            ]
+        //        },
+        //        //onlyMimes: ["image", "text/plain"] // Get files of requested mime types only
+        //        lang: 'vi',
+        //    };
+        //    $('#elfinder').elfinder(options).elfinder('instance');
+        //});
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .then(editor => {
+                console.log('CKEditor 5 initialized!', editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+        $().ready(function () {
+            $('#elfinder-container').elfinder({
+                baseUrl: "@Url.Content("~/lib/elfinder/")",
+                url: '@Url.Action("Connector")',
+                commandsOptions: {
+                    getfile: {
+                        oncomplete: 'destroy'
+                    }
+                }
+            });
+        });
+    </script>
+}

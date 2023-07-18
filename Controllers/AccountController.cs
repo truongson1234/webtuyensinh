@@ -30,7 +30,7 @@ namespace webtuyensinh.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("/login")]
-        public async Task<IActionResult> Login ([Bind("UserName, Password")] UserModel UserModel)
+        public async Task<IActionResult> Login([Bind("UserName, Password")] UserModel UserModel)
         {
             var user = await _context.UserModel
                 .FirstOrDefaultAsync(u => u.UserName == UserModel.UserName && u.Password == UserModel.Password);

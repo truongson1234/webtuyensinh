@@ -1,0 +1,90 @@
+﻿@model webtuyensinh.Models.AdmissionModel
+
+@*<form class="home-introduce__form px-3 pt-5 pb-4">
+    <button class="home-introduce__btn-close"><i class="fas fa-times"></i></button>
+    <h3 class="f1">ĐĂNG KÝ THÔNG TIN</h3>
+    <div class="mb-3 w-100">
+        <input type="text" class="form-control" placeholder="Họ và tên*">
+    </div>
+    <div class="mb-3 w-100">
+        <input type="text" class="form-control" placeholder="Địa chỉ*">
+    </div>
+    <div class="mb-3 w-100">
+        <input type="text" class="form-control" placeholder="Số điện thoại*">
+    </div>
+    <div class="mb-3 w-100">
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Bậc học và đất nước quan tâm</option>
+            <option value="1">Sau đại học</option>
+            <option value="2">Đại học</option>
+            <option value="3">Cao đẳng</option>
+            <option value="3">Trung cấp</option>
+            <option value="3">Sơ cấp nghề</option>
+            <option value="3">Tiếng Đức</option>
+            <option value="3">Tiếng Hàn</option>
+            <option value="3">Tiếng Nhật</option>
+            <option value="3">Tiếng Anh</option>
+            <option value="3">Du học nghề</option>
+            <option value="3">XKLĐ</option>
+            <option value="3">Chuyển đổi bằng</option>
+        </select>
+    </div>
+    <div class="mb-3 w-100">
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Hình thức học</option>
+            <option value="1">Liên thông</option>
+            <option value="2">Văn bằng 2</option>
+            <option value="3">Chính quy</option>
+            <option value="3">Học từ xa</option>
+            <option value="3">Du học nghề kép</option>
+            <option value="3">Chuyển đổi bằng</option>
+            <option value="3">Lao động</option>
+        </select>
+    </div>
+    <div class="mb-3 w-100">
+        <input type="text" class="form-control" placeholder="Chuyên ngành hay đất nước bạn muốn đến?">
+    </div>
+    <button type="submit" class="btn btn-submit btn-primary">XÁC NHẬN</button>
+</form>*@
+
+@using (Html.BeginForm("Create", "CustomerController", FormMethod.Post, new { @class = "home-introduce__form px-3 pt-5 pb-4" }))
+{
+    <div class="mb-3 w-100">
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Họ và tên*" })
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+
+    <div class="mb-3 w-100">
+        @Html.TextBoxFor(model => model.Address, new { @class = "form-control", placeholder = "Địa chỉ*" })
+        @Html.ValidationMessageFor(model => model.Address)
+    </div>
+
+    <div class="mb-3 w-100">
+        @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control", placeholder = "Số điện thoại*" })
+        @Html.ValidationMessageFor(model => model.PhoneNumber)
+    </div>
+
+    <div class="mb-3 w-100">
+        @Html.LabelFor(model => model.EducationLevel)
+        @Html.DropDownListFor(model => model.EducationLevel,
+    new SelectList(Enum.GetValues(typeof(LevelOptions))), ViewBag.DisplayName as string,
+    new { @class = "form-select" })
+        @Html.ValidationMessageFor(model => model.EducationLevel)
+    </div>
+
+    <div class="mb-3 w-100">
+        @Html.LabelFor(model => model.TypeOfTraining)
+        @Html.DropDownListFor(model => model.TypeOfTraining,
+    new SelectList(Enum.GetValues(typeof(TypeOptions))), ViewBag.DisplayName as string,
+    new { @class = "form-select" })
+        @Html.ValidationMessageFor(model => model.TypeOfTraining)
+    </div>
+
+    <div>
+        @Html.TextBoxFor(model => model.Desire,
+    new { @class = "form-control", placeholder = "Chuyên ngành hay đất nước bạn muốn đến?" })
+        @Html.ValidationMessageFor(model => model.Desire)
+    </div>
+
+    <button type="submit" class="btn btn-submit btn-primary">XÁC NHẬN</button>
+}

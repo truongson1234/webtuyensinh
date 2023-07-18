@@ -14,4 +14,7 @@ public class WebtuyensinhDbContext : DbContext
 
     public DbSet<AdmissionModel> AdmissionModel { get; set; }
     public DbSet<UserModel> UserModel { get; set; }
+    public DbSet<CategoryModel> CategoryModel { get; set; }
+    public DbSet<PostModel> PostModel { get; set; }
+
 }
