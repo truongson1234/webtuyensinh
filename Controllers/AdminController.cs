@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using OfficeOpenXml;
 using webtuyensinh.Models;
 using webtuyensinh.ViewModels;
+using X.PagedList;
 
 namespace webtuyensinh.Controllers
 {
@@ -18,15 +20,15 @@ namespace webtuyensinh.Controllers
         {
             return View();
         }
-        public IActionResult AdmissionsManager()
+        public IActionResult AdmissionsManager(int? page, string searchA = "")
         {
-            var admissions = _context.AdmissionModel.Select(p => p);
+            int pageSize = 3;
+            int pageNumber = page ?? 1;
 
-            var model = new AdmissionViewModel
-            {
-                Admissions = admissions
-            };
-            return View(model);
+            var admissions = _context.AdmissionModel.Where(p => p.Name.Contains(searchA)).Select(p => p).ToList();
+
+            var pagedData = admissions.ToPagedList(pageNumber, pageSize);
+            return View(pagedData);
         }
         public IActionResult PostsManager()
         {
@@ -67,5 +69,23 @@ namespace webtuyensinh.Controllers
             return RedirectToAction("AdmissionsManager");
         }
 
+        public IActionResult ExportExcel()
+        {
+            var data = _context.AdmissionModel.Select(d => d);
+
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Sheet1");
+
+                worksheet.Cells.LoadFromCollection(data, true);
+
+                var stream = new MemoryStream(package.GetAsByteArray());
+
+                Response.Headers.Add("Content-Disposition", "attachment; filename=admissions.xlsx");
+                Response.Headers.Add("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+
+                return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            }
+        }
     }
 }
