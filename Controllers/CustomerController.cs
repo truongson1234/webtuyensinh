@@ -34,7 +34,6 @@ namespace webtuyensinh.Controllers
 
         // POST: CustomerController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Create(AdmissionModel admission)
         {
             try

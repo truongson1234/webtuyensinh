@@ -47,7 +47,7 @@
     <button type="submit" class="btn btn-submit btn-primary">XÁC NHẬN</button>
 </form>*@
 
-@using (Html.BeginForm("Create", "CustomerController", FormMethod.Post, new { @class = "home-introduce__form px-3 pt-5 pb-4" }))
+@using (Html.BeginForm("Create", "Customer", FormMethod.Post, new { @class = "home-introduce__form px-3 pt-5 pb-4" }))
 {
     <div class="mb-3 w-100">
         @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Họ và tên*" })

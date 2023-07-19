@@ -10,7 +10,7 @@
     <h4>PostModel</h4>
     <div class="row">
         <div class="col-md-4">
-            @using (@Html.BeginForm("Create", "Post", FormMethod.Post, new { @class = "" }))
+            @using (@Html.BeginForm("Create", "Post", FormMethod.Post, new { @class = "py-5", enctype = "multipart/form-data" }))
             {
                 <div class="mb-3">
                     <select asp-for="Post.CategoryId" class="form-select">
@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="mb-3">
-                    @Html.TextAreaFor(model => model.Post.Content, new { @id = "rtxBlogContent", @class = "form-control", placeholder = "Nội dung" })
+                    @Html.TextAreaFor(model => model.Post.Content, new { @class = "form-control", placeholder = "Nội dung" })
                     @Html.ValidationMessageFor(model => model.Post.Content)
                 </div>
 
@@ -50,9 +50,10 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
+@section Scripts
+{
     @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        var summernote = new webtuyensinh.Models.Sommnernote("#Post_Content");
     }
-    <script src="~/lib/ckeditor/ckeditor.js"></script>
+    <partial name="_Summernote" model="summernote" />
 }

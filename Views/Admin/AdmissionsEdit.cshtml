@@ -1,0 +1,66 @@
+﻿@model webtuyensinh.ViewModels.AdmissionViewModel
+
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "AdmissionsEdit";
+}
+
+
+<div class="container">
+    <div class="row">
+        <h1>AdmissionsEdit</h1>
+        <hr />
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            @using (Html.BeginForm("AdmissionsUpdate", "Admin", FormMethod.Post, new { @class = "px-3 pt-5 pb-4" }))
+            {
+                @Html.HiddenFor(model => model.Admission.Id)
+                <div class="mb-3 w-100">
+                    @Html.TextBoxFor(model => model.Admission.Name, new { @class = "form-control", placeholder = "Họ và tên*" })
+                    @Html.ValidationMessageFor(model => model.Admission.Name)
+                </div>
+
+                <div class="mb-3 w-100">
+                    @Html.TextBoxFor(model => model.Admission.Address, new { @class = "form-control", placeholder = "Địa chỉ*" })
+                    @Html.ValidationMessageFor(model => model.Admission.Address)
+                </div>
+
+                <div class="mb-3 w-100">
+                    @Html.TextBoxFor(model => model.Admission.PhoneNumber, new { @class = "form-control", placeholder = "Số điện thoại*" })
+                    @Html.ValidationMessageFor(model => model.Admission.PhoneNumber)
+                </div>
+
+                <div class="mb-3 w-100">
+                    <select class="form-control" asp-for="Admission.EducationLevel" asp-items="Html.GetEnumSelectList<LevelOptions>()">
+                        <option selected>Bậc học và đất nước quan tâm</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.Admission.EducationLevel)
+                </div>
+
+                <div class="mb-3 w-100">
+                    <select class="form-control" asp-for="Admission.TypeOfTraining" asp-items="Html.GetEnumSelectList<TypeOptions>()">
+                        <option selected>Hình thức học</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.Admission.TypeOfTraining)
+                </div>
+
+                <div class="mb-3 w-100">
+                    @Html.TextBoxFor(model => model.Admission.Desire, new { @class = "form-control", placeholder = "Chuyên ngành hay đất nước bạn muốn đến?" })
+                    @Html.ValidationMessageFor(model => model.Admission.Desire)
+                </div>
+
+                <button type="submit" class="btn btn-submit btn-primary">XÁC NHẬN</button>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <a asp-action="Index">Back to List</a>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

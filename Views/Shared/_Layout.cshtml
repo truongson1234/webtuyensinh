@@ -7,17 +7,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link href="~/lib/owlcarousel/owl.carousel.min.css" rel="stylesheet" />
-    <link href="~/lib/owlcarousel/owl.theme.default.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true" />
-    <link href="~/css/all.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/assets/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/assets/lib/owlcarousel/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/assets/lib/owlcarousel/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="~/assets/css/all.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/assets/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/assets/css/layout.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/webtuyensinh.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/lib/jqueryui/themes/base/theme.css" />
-    <link rel="stylesheet" href="~/lib/jqueryui/themes/base/jquery-ui.css" />
-    <link rel="stylesheet" href="~/lib/elfinder/css/elfinder.full.css" />
-    <link rel="stylesheet" href="~/lib/elfinder/css/theme.min.css" />
     @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
@@ -40,7 +36,7 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    <img src="~/img/logo-tuyensinh.png" />
+                    <img src="~/assets/img/logo-tuyensinh.png" />
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -224,7 +220,7 @@
                 <div class="row">
                     <div class="col d-flex flex-column justify-content-center">
                         <div class="footer-body__logo mb-3">
-                            <img src="~/img/logo-tuyensinh.png" />
+                            <img src="~/assets/img/logo-tuyensinh.png" />
                         </div>
                         <div class="footer-body__contact">
                             <p class="footer-body__contactiii">
@@ -266,13 +262,10 @@
             
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/jqueryui/jquery-ui.min.js"></script>
-    <script src="~/lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/lib/ckeditor5/ckeditor.js"></script>
-    <script src="~/lib/elfinder/js/elfinder.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/assets/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/assets/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="~/assets/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

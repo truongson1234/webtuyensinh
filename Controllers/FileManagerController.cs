@@ -38,18 +38,18 @@ namespace webtuyensinh.Controllers
         private Connector GetConnector()
         {
             // Thư mục gốc lưu trữ là wwwwroot/files (đảm bảo có tạo thư mục này)
-            string pathroot = "files";
+            string pathroot = "Uploads";
+            string requestUrl = "contents";
 
             var driver = new FileSystemDriver();
 
             string absoluteUrl = UriHelper.BuildAbsolute(Request.Scheme, Request.Host);
             var uri = new Uri(absoluteUrl);
 
-            // .. ... wwww/files
-            string rootDirectory = Path.Combine(_env.WebRootPath, pathroot);
+            string rootDirectory = Path.Combine(_env.ContentRootPath, pathroot);
 
             // https://localhost:5001/files/
-            string url = $"{uri.Scheme}://{uri.Authority}/{pathroot}/";
+            string url = $"{uri.Scheme}://{uri.Authority}/{requestUrl}/";
             string urlthumb = $"{uri.Scheme}://{uri.Authority}/el-finder-file-system/thumb/";
 
 

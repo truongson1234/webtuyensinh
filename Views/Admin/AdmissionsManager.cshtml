@@ -1,0 +1,80 @@
+﻿@model webtuyensinh.ViewModels.AdmissionViewModel
+
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "QL Tuyển sinh";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+                    <h6>Người đăng kí</h6>
+                </div>
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#ID</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Người ĐK</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">SĐT</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Bậc học</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ngày ĐK</th>
+                                    <th class="text-secondary opacity-7"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int i = 1;
+                                    foreach (var @item in Model.Admissions)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <h6 class="mb-0 text-center text-sm">@i</h6>
+                                            </td>
+                                            <td>
+                                                <div class="px-2 py-1">
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">@item.Name</h6>
+                                                        <p class="text-xs text-secondary mb-0">@item.Address</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <h6 class="mb-0 text-sm">@item.PhoneNumber</h6>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <p class="text-xs font-weight-bold mb-0">@item.EducationLevel</p>
+                                                <p class="text-xs text-secondary mb-0">@item.TypeOfTraining</p>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-bold">@item.CreatedAt</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <form asp-action="AdmissionsDelete" method="post">
+                                                    <a asp-action="AdmissionsEdit" asp-route-id="@item.Id" class="text-secondary font-weight-bold text-xs">
+                                                        Sửa
+                                                    </a>
+                                                    <span> | </span>
+                                                    <input type="submit" value="Xóa" class="border-0 bg-transparent text-secondary font-weight-bold text-xs p-0 m-0" />
+                                                    <input hidden type="hidden" name="admission_id" value="@item.Id"/>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        {
+                                            i++;
+                                        }
+                                    }
+                                }
+                                
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

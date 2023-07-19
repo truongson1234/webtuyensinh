@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections;
 using webtuyensinh.Models;
 using webtuyensinh.ViewModels;
 
@@ -17,7 +18,13 @@ namespace webtuyensinh.Controllers
         // GET: PostController
         public ActionResult Index()
         {
-            return View();
+            var posts = _context.PostModel.Select(p => p);
+
+            var model = new PostViewModel
+            {
+                Posts = posts
+            };
+            return View(model);
         }
 
         // GET: PostController/Details/5
@@ -37,10 +44,28 @@ namespace webtuyensinh.Controllers
             return View(model);
         }
 
+        
+        [HttpPost]
+        public IActionResult Test(IFormFile postedFile)
+        {
+            if (postedFile == null || postedFile.Length == 0)
+
+                return BadRequest("No file selected for upload...");
+
+
+
+            string fileName = Path.GetFileName(postedFile.FileName);
+
+            string contentType = postedFile.ContentType;
+
+
+            return View();
+        }
+
+
         // POST: PostController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(PostModel post)
+        public async Task<IActionResult> Create(PostModel post)
         {
             try
             {
@@ -51,9 +76,10 @@ namespace webtuyensinh.Controllers
             }
             catch
             {
-                return View();
+                return RedirectToAction("Create", "Post");
             }
         }
+
 
         // GET: PostController/Edit/5
         public ActionResult Edit(int id)
