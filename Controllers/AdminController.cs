@@ -12,7 +12,7 @@ using X.PagedList;
 
 namespace webtuyensinh.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly WebtuyensinhDbContext _context;
