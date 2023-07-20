@@ -65,8 +65,8 @@
                                                 <span class="text-secondary text-xs font-weight-bold">@item.CreatedAt</span>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <form asp-action="AdmissionsDelete" method="post">
-                                                    <a asp-action="AdmissionsEdit" asp-route-id="@item.Id" class="text-secondary font-weight-bold text-xs">
+                                                <form asp-action="AdmissionDelete" method="post">
+                                                    <a asp-action="AdmissionEdit" asp-route-id="@item.Id" class="text-secondary font-weight-bold text-xs">
                                                         Sửa
                                                     </a>
                                                     <span> | </span>
@@ -83,7 +83,7 @@
                             </tbody>
                         </table>
                         <div>
-                            @Html.PagedListPager(Model, page => Url.Action("AdmissionsManager", new { page }))
+                            @Html.PagedListPager(Model, page => Url.Action("CategoriesManager", new { page }))
                         </div>
                     </div>
                 </div>

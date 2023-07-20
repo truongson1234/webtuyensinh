@@ -2,18 +2,18 @@
 
 @{
     Layout = "_LayoutAdmin";
-    ViewData["Title"] = "AdmissionsEdit";
+    ViewData["Title"] = "Sửa Người ĐK";
 }
 
 
 <div class="container">
     <div class="row">
-        <h1>AdmissionsEdit</h1>
+        <h1>Sửa Người ĐK</h1>
         <hr />
     </div>
     <div class="row">
         <div class="col-md-4">
-            @using (Html.BeginForm("AdmissionsUpdate", "Admin", FormMethod.Post, new { @class = "px-3 pt-5 pb-4" }))
+            @using (Html.BeginForm("AdmissionUpdate", "Admin", FormMethod.Post, new { @class = "px-3 pt-5 pb-4" }))
             {
                 @Html.HiddenFor(model => model.Admission.Id)
                 <div class="mb-3 w-100">

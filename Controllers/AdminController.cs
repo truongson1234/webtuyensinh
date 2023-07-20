@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using elFinder.NetCore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.Extensions.Hosting;
 using OfficeOpenXml;
 using System.Collections.Generic;
 using webtuyensinh.Models;
@@ -35,7 +37,7 @@ namespace webtuyensinh.Controllers
             var pagedData = admissions.ToPagedList(pageNumber, pageSize);
             return View(pagedData);
         }
-        public IActionResult AdmissionsEdit(int id)
+        public IActionResult AdmissionEdit(int id)
         {
             var admission = _context.AdmissionModel.FirstOrDefault(a => a.Id == id);
 
@@ -46,7 +48,7 @@ namespace webtuyensinh.Controllers
             return View(model);
         }
         [HttpPost]
-        public IActionResult AdmissionsUpdate(AdmissionModel admission)
+        public IActionResult AdmissionUpdate(AdmissionModel admission)
         {
             admission.UpdatedAt = DateTime.Now;
             _context.AdmissionModel.Update(admission);
@@ -54,7 +56,7 @@ namespace webtuyensinh.Controllers
             return RedirectToAction("AdmissionsManager");
         }
         [HttpPost]
-        public async Task<IActionResult> AdmissionsDelete(int admission_id)
+        public async Task<IActionResult> AdmissionDelete(int admission_id)
         {
             var admission = await _context.AdmissionModel.FirstOrDefaultAsync(p => p.Id == admission_id);
 
@@ -98,6 +100,7 @@ namespace webtuyensinh.Controllers
                         {
                             Id = p1.Id,
                             Title = p1.Title,
+                            Avartar = p1.Avartar,
                             Content = p1.Content,
                             Description = p1.Description,
                             CreatedAt = p1.CreatedAt,
@@ -116,7 +119,37 @@ namespace webtuyensinh.Controllers
 
             return View(pagedData);
         }
-        public IActionResult PostsEdit(int id) 
+        public IActionResult PostCreate()
+        {
+            var categories = _context.CategoryModel.Select(c => c);
+            var model = new PostViewModel
+            {
+                Categories = categories
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> PostCreate(IFormFile postedFile, PostModel post)
+        {
+            if (postedFile == null || postedFile.Length == 0)
+                return BadRequest("No file selected for upload...");
+
+            string fileName = Path.GetFileName(postedFile.FileName);
+            var uploadDirectory = "Uploads";
+            var filePath = Path.Combine(uploadDirectory, fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await postedFile.CopyToAsync(stream);
+            }
+
+            post.Avartar = fileName;
+            post.CreatedAt = DateTime.Now;
+            _context.PostModel.Add(post);
+            _context.SaveChanges();
+            return RedirectToAction("PostsManager");
+        }
+        public IActionResult PostEdit(int id) 
         {
             var cate = _context.CategoryModel.ToList();
             var post = _context.PostModel
@@ -126,6 +159,7 @@ namespace webtuyensinh.Controllers
                         (p1, c2) => new PostModel { 
                             Id = p1.Id,
                             Title = p1.Title,
+                            Avartar = p1.Avartar,
                             Content = p1.Content,
                             Description = p1.Description,
                             CreatedAt = p1.CreatedAt,
@@ -146,8 +180,22 @@ namespace webtuyensinh.Controllers
             return View(model);
         }
         [HttpPost]
-        public IActionResult PostUpdate (PostModel post)
+        public async Task<IActionResult> PostUpdate (IFormFile postedFile, PostModel post)
         {
+            if (postedFile != null)
+            {
+                string fileName = Path.GetFileName(postedFile.FileName);
+                var uploadDirectory = "Uploads";
+                var filePath = Path.Combine(uploadDirectory, fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await postedFile.CopyToAsync(stream);
+                }
+
+                post.Avartar = fileName;
+            }
+
             post.UpdatedAt = DateTime.Now;
             _context.PostModel.Update(post);
             _context.SaveChanges();
@@ -162,6 +210,58 @@ namespace webtuyensinh.Controllers
             await _context.SaveChangesAsync();
 
             return RedirectToAction("PostsManager");
+        }
+
+
+        ///CATE
+        public IActionResult CategoriesManager(int? page, string searchC = "")
+        {
+            int pageSize = 5;
+            int pageNumber = page ?? 1;
+
+            var cates = _context.CategoryModel.Where(p => p.Name.Contains(searchC)).ToList();
+
+            var pagedData = cates.ToPagedList(pageNumber, pageSize);
+            return View(pagedData);
+        }
+        public IActionResult CategoryCreate()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> CategoryCreate(CategoryModel category)
+        {
+            category.CreatedAt = DateTime.Now;
+            _context.CategoryModel.Add(category);
+            _context.SaveChanges();
+            return RedirectToAction("CategoriesManager");
+        }
+        public IActionResult CategoryEdit(int id)
+        {
+            var cate = _context.CategoryModel.Where(c => c.Id == id).FirstOrDefault();
+            var model = new CategoryViewModel
+            {
+                Category = cate
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> CategoryUpdate(CategoryModel category)
+        {
+            category.UpdatedAt = DateTime.Now;
+            _context.CategoryModel.Update(category);
+            _context.SaveChanges();
+            return RedirectToAction("CategoriesManager");
+        }
+        [HttpPost]
+        public async Task<IActionResult> CategoryDelete(int cate_id)
+        {
+            var cate = await _context.CategoryModel.FirstOrDefaultAsync(c => c.Id == cate_id);
+
+            _context.CategoryModel.Remove(cate);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("CategoriesManager");
         }
     }
 }

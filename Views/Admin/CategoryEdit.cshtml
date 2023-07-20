@@ -1,0 +1,40 @@
+﻿@model webtuyensinh.ViewModels.CategoryViewModel
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "Sửa danh mục";
+}
+
+<div class="container">
+    <div class="row">
+        <h1>Sửa danh mục</h1>
+        <hr />
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            @using (Html.BeginForm("CategoryUpdate", "Admin", FormMethod.Post, new { @class = "px-3 pt-5 pb-4" }))
+            {
+                @Html.HiddenFor(model => model.Category.Id)
+                <div class="mb-3 w-100">
+                    @Html.TextBoxFor(model => model.Category.Name, new { @class = "form-control", placeholder = "Tên danh mục*" })
+                    @Html.ValidationMessageFor(model => model.Category.Name)
+                </div>
+
+                <div class="mb-3 w-100">
+                    @Html.TextBoxFor(model => model.Category.Description, new { @class = "form-control", placeholder = "Mô tả*" })
+                    @Html.ValidationMessageFor(model => model.Category.Description)
+                </div>
+
+                <button type="submit" class="btn btn-submit btn-primary">XÁC NHẬN</button>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <a asp-action="Index">Back to List</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

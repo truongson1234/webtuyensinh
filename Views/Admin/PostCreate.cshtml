@@ -1,16 +1,16 @@
 ﻿@model webtuyensinh.ViewModels.PostViewModel
 
 @{
+    Layout = "_LayoutAdmin";
     ViewData["Title"] = "Create";
 }
 
 
 <div class="container">
     <h1>Create</h1>
-    <h4>PostModel</h4>
     <div class="row">
         <div class="col-md-4">
-            @using (@Html.BeginForm("Create", "Post", FormMethod.Post, new { @class = "py-5", enctype = "multipart/form-data" }))
+            @using (@Html.BeginForm("PostCreate", "Admin", FormMethod.Post, new { @class = "py-5", enctype = "multipart/form-data" }))
             {
                 <div class="mb-3">
                     <select asp-for="Post.CategoryId" class="form-select">
@@ -23,6 +23,12 @@
 
                     @Html.ValidationMessageFor(model => model.Post.CategoryId)
                 </div>
+
+                <div class="mb-3">
+                    <input type="file" name="postedFile" class="form-control" />
+                    @Html.ValidationMessageFor(model => model.Post.Avartar)
+                </div>
+
                 <div class="mb-3">
                     @Html.TextBoxFor(model => model.Post.Title, new { @class = "form-control", placeholder = "Tiêu đề" })
                     @Html.ValidationMessageFor(model => model.Post.Title)
@@ -51,7 +57,7 @@
 </div>
 
 @section Scripts
-{
+    {
     @{
         var summernote = new webtuyensinh.Models.Sommnernote("#Post_Content");
     }

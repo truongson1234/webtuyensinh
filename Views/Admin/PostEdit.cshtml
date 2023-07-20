@@ -1,0 +1,126 @@
+﻿@model webtuyensinh.ViewModels.PostViewModel
+
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "PostEdit";
+}
+
+@section Styles {
+    <style>
+        #file-input_vartar {
+            display: none;
+        }
+
+        .postedit-preview {
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 100%;
+            max-width: 350px;
+            margin: auto;
+            background-color: rgb(255, 255, 255);
+            box-shadow: 0 0 20px rgba(170, 170, 170, 0.2);
+        }
+
+        img {
+            width: 100%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: 600;
+            cursor: pointer;
+            color: #fff;
+            border-radius: 8px;
+            padding: 10px 20px;
+            background-color: rgb(101, 101, 255);
+        }
+    </style>
+}
+
+<div class="container">
+    <div class="row">
+        <h1>PostEdit</h1>
+        <hr />
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            @using (Html.BeginForm("PostUpdate", "Admin", FormMethod.Post, new { @class = "px-3 pt-5 pb-4", enctype = "multipart/form-data" }))
+            {
+                @Html.HiddenFor(model => model.Post.Id)
+
+                <div class="mb-3 w-100">
+                    <select class="form-control" asp-for="Post.CategoryId">
+                        @foreach(var cate in Model.Categories)
+                        {
+                            @if (cate.Id == Model.Post.CategoryId)
+                            {
+                                <option value="@cate.Id" selected>@cate.Name</option>
+                            } else
+                            {
+                                <option value="@cate.Id">@cate.Name</option>
+                            }
+                        }
+                    }
+                    </select>
+                    @Html.ValidationMessageFor(model => model.Post.CategoryId)
+                </div>
+
+                <div class="mb-3 w-100">
+                    @Html.TextBoxFor(model => model.Post.Title, new { @class = "form-control", placeholder = "Tiêu đề*" })
+                    @Html.ValidationMessageFor(model => model.Post.Title)
+                </div>
+
+                <div class="mb-3">
+                    <div class="postedit-preview">
+                        <label for="file-input_vartar">Upload Image</label>
+                        <input type="file" name="postedFile" id="file-input_vartar" class="form-control" />
+                        @Html.HiddenFor(model => model.Post.Avartar)
+                        <img id="img-preview" accept="image/*" src="@Url.Content("~/contents/" + @Model.Post.Avartar)">
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Post.Avartar)
+                </div>
+
+                <div class="mb-3 w-100">
+                    @Html.TextBoxFor(model => model.Post.Description, new { @class = "form-control", placeholder = "Chuyên ngành hay đất nước bạn muốn đến?" })
+                    @Html.ValidationMessageFor(model => model.Post.Description)
+                </div>
+
+                <div class="mb-3 w-100">
+                    @Html.TextAreaFor(model => model.Post.Content)
+                    @Html.ValidationMessageFor(model => model.Post.Content)
+                </div>
+
+                <button type="submit" class="btn btn-submit btn-primary">XÁC NHẬN</button>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <a asp-action="Index">Back to List</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        var summernote = new webtuyensinh.Models.Sommnernote("#Post_Content");
+    }
+
+    <partial name="_Summernote" model="summernote" />
+
+    <script>
+        const input = document.getElementById('file-input_vartar');
+        const image = document.getElementById('img-preview');
+
+        input.addEventListener('change', (e) => {
+            if (e.target.files.length) {
+                const src = URL.createObjectURL(e.target.files[0]);
+                image.src = src;
+            }
+        });
+    </script>
+
+}
