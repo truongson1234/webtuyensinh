@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using OfficeOpenXml;
+using System.Collections.Generic;
 using webtuyensinh.Models;
 using webtuyensinh.ViewModels;
 using X.PagedList;
@@ -20,25 +22,18 @@ namespace webtuyensinh.Controllers
         {
             return View();
         }
+
+
+        ///ADMISSION
         public IActionResult AdmissionsManager(int? page, string searchA = "")
         {
-            int pageSize = 3;
+            int pageSize = 5;
             int pageNumber = page ?? 1;
 
             var admissions = _context.AdmissionModel.Where(p => p.Name.Contains(searchA)).Select(p => p).ToList();
 
             var pagedData = admissions.ToPagedList(pageNumber, pageSize);
             return View(pagedData);
-        }
-        public IActionResult PostsManager()
-        {
-            var posts = _context.PostModel.Select(p => p);
-
-            var model = new PostViewModel
-            {
-                Posts = posts
-            };
-            return View(model);
         }
         public IActionResult AdmissionsEdit(int id)
         {
@@ -86,6 +81,87 @@ namespace webtuyensinh.Controllers
 
                 return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
             }
+        }
+
+
+        ///POST
+        public IActionResult PostsManager(int? page, string searchP = "")
+        {
+            int pageSize = 3;
+            int pageNumber = page ?? 1;
+
+            var posts = _context.PostModel
+                .Join(_context.CategoryModel,
+                        p1 => p1.CategoryId,
+                        c2 => c2.Id,
+                        (p1, c2) => new PostModel
+                        {
+                            Id = p1.Id,
+                            Title = p1.Title,
+                            Content = p1.Content,
+                            Description = p1.Description,
+                            CreatedAt = p1.CreatedAt,
+                            UpdatedAt = p1.UpdatedAt,
+                            CategoryId = p1.CategoryId,
+                            Category = c2,
+                        }
+                        )
+                .Where(p => p.Category.Name.Contains(searchP))
+                .Where(p => p.Title.Contains(searchP))
+                .Where(p => p.Content.Contains(searchP))
+                .Where(p => p.Description.Contains(searchP))
+                .ToList();
+
+            var pagedData = posts.ToPagedList(pageNumber, pageSize);
+
+            return View(pagedData);
+        }
+        public IActionResult PostsEdit(int id) 
+        {
+            var cate = _context.CategoryModel.ToList();
+            var post = _context.PostModel
+                    .Join(_context.CategoryModel,
+                        p1 => p1.CategoryId,
+                        c2 => c2.Id,
+                        (p1, c2) => new PostModel { 
+                            Id = p1.Id,
+                            Title = p1.Title,
+                            Content = p1.Content,
+                            Description = p1.Description,
+                            CreatedAt = p1.CreatedAt,
+                            UpdatedAt = p1.UpdatedAt,
+                            CategoryId = p1.CategoryId,
+                            Category = c2,
+                        }
+                        )
+                    .Where(p => p.Id == id)
+                    .FirstOrDefault();
+
+            var model = new PostViewModel
+            {
+                Post = post,
+                Categories = cate
+            };
+
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult PostUpdate (PostModel post)
+        {
+            post.UpdatedAt = DateTime.Now;
+            _context.PostModel.Update(post);
+            _context.SaveChanges();
+            return RedirectToAction("PostsManager");
+        }
+        [HttpPost]
+        public async Task<IActionResult> PostDelete(int post_id) 
+        {
+            var post = await _context.AdmissionModel.FirstOrDefaultAsync(p => p.Id == post_id);
+
+            _context.AdmissionModel.Remove(post);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("PostsManager");
         }
     }
 }
