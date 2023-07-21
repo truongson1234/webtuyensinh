@@ -12,7 +12,7 @@ using X.PagedList;
 
 namespace webtuyensinh.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly WebtuyensinhDbContext _context;
@@ -204,9 +204,9 @@ namespace webtuyensinh.Controllers
         [HttpPost]
         public async Task<IActionResult> PostDelete(int post_id) 
         {
-            var post = await _context.AdmissionModel.FirstOrDefaultAsync(p => p.Id == post_id);
+            var post = await _context.PostModel.FirstOrDefaultAsync(p => p.Id == post_id);
 
-            _context.AdmissionModel.Remove(post);
+            _context.PostModel.Remove(post);
             await _context.SaveChangesAsync();
 
             return RedirectToAction("PostsManager");

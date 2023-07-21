@@ -1,4 +1,4 @@
-﻿@model webtuyensinh.Models.AdmissionModel
+﻿@model webtuyensinh.ViewModels.HomeViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -23,37 +23,37 @@
             <button class="home-introduce__btn-close"><i class="fas fa-times"></i></button>
             <h3 class="f1">ĐĂNG KÝ THÔNG TIN</h3>
             <div class="mb-3 w-100">
-                @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Họ và tên*" })
-                @Html.ValidationMessageFor(model => model.Name)
+                @Html.TextBoxFor(model => model.AdmissionModel.Name, new { @class = "form-control", placeholder = "Họ và tên*" })
+                @Html.ValidationMessageFor(model => model.AdmissionModel.Name)
             </div>
 
             <div class="mb-3 w-100">
-                @Html.TextBoxFor(model => model.Address, new { @class = "form-control", placeholder = "Địa chỉ*" })
-                @Html.ValidationMessageFor(model => model.Address)
+                @Html.TextBoxFor(model => model.AdmissionModel.Address, new { @class = "form-control", placeholder = "Địa chỉ*" })
+                @Html.ValidationMessageFor(model => model.AdmissionModel.Address)
             </div>
 
             <div class="mb-3 w-100">
-                @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control", placeholder = "Số điện thoại*" })
-                @Html.ValidationMessageFor(model => model.PhoneNumber)
+                @Html.TextBoxFor(model => model.AdmissionModel.PhoneNumber, new { @class = "form-control", placeholder = "Số điện thoại*" })
+                @Html.ValidationMessageFor(model => model.AdmissionModel.PhoneNumber)
             </div>
 
             <div class="mb-3 w-100">
-                <select class="form-control" asp-for="EducationLevel" asp-items="Html.GetEnumSelectList<LevelOptions>()">
+                <select class="form-control" asp-for="AdmissionModel.EducationLevel" asp-items="Html.GetEnumSelectList<LevelOptions>()">
                     <option selected>Bậc học và đất nước quan tâm</option>
                 </select>
-                @Html.ValidationMessageFor(model => model.EducationLevel)
+                @Html.ValidationMessageFor(model => model.AdmissionModel.EducationLevel)
             </div>
 
             <div class="mb-3 w-100">
-                <select class="form-control" asp-for="TypeOfTraining" asp-items="Html.GetEnumSelectList<TypeOptions>()">
+                <select class="form-control" asp-for="AdmissionModel.TypeOfTraining" asp-items="Html.GetEnumSelectList<TypeOptions>()">
                     <option selected>Hình thức học</option>
                 </select>
-                @Html.ValidationMessageFor(model => model.TypeOfTraining)
+                @Html.ValidationMessageFor(model => model.AdmissionModel.TypeOfTraining)
             </div>
 
             <div class="mb-3 w-100">
-                @Html.TextBoxFor(model => model.Desire, new { @class = "form-control", placeholder = "Chuyên ngành hay đất nước bạn muốn đến?" })
-                @Html.ValidationMessageFor(model => model.Desire)
+                @Html.TextBoxFor(model => model.AdmissionModel.Desire, new { @class = "form-control", placeholder = "Chuyên ngành hay đất nước bạn muốn đến?" })
+                @Html.ValidationMessageFor(model => model.AdmissionModel.Desire)
             </div>
 
             <button type="submit" class="btn btn-submit btn-primary">XÁC NHẬN</button>
@@ -128,71 +128,73 @@
         <div class="home-news__wrapper row">
             <div class="home-news__main col-8">
                 <div class="row">
-                    <div class="col-6">
-                        <div class="home-news__article main">
-                            <div class="home-news__img">
-                                <img src="~/assets/img/homenews-main1.png" />
+                    @foreach(var am in Model.ArticleMain)
+                    {
+                        <div class="col-6">
+                            <div class="home-news__article main">
+                                <a asp-controller="Post" asp-action="Details" asp-route-id="@am.Id" class="home-news__img d-block">
+                                    <img src="@Url.Content("~/contents/" + am.Avartar)" />
+                                </a>
+                                <span class="home-news__category">@am.Category.Name</span>
+                                <h4 class="home-news__title">@am.Title</h4>
+                                <p class="home-news__summary" style="display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;overflow: hidden;">
+                                    @am.Description
+                                </p>
                             </div>
-                            <span class="home-news__category">Danh mục tin tức</span>
-                            <h4 class="home-news__title">Những sai lầm khi nấu ăn, gây hại cho sức khỏe nhiều người mắc phải</h4>
-                            <p class="home-news__summary">
-                                Khi chế biến món ăn có những thói quen nhỏ tưởng chừng vô hại nhưng lại là sai lầm lớn ảnh hưởng đến sức khỏe cả gia đình. Cùng điểm qua một số sai lầm
-                            </p>
                         </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="home-news__article main">
-                            <div class="home-news__img">
-                                <img src="~/assets/img/homenews-main2.png" />
-                            </div>
-                            <span class="home-news__category">Danh mục tin tức</span>
-                            <h4 class="home-news__title">Những sai lầm khi nấu ăn, gây hại cho sức khỏe nhiều người mắc phải</h4>
-                            <p class="home-news__summary">
-                                Khi chế biến món ăn có những thói quen nhỏ tưởng chừng vô hại nhưng lại là sai lầm lớn ảnh hưởng đến sức khỏe cả gia đình. Cùng điểm qua một số sai lầm
-                            </p>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div
             <div class="home-news__extra">
                 <div class="tab-content col-4" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
                         <div class="d-flex flex-column">
-                            <div class="home-news__article extra">
-                                <div class="home-news__img me-3">
-                                    <img src="~/assets/img/homenews-extra1.png" />
+                            @foreach(var aone in Model.ArticleCateOne)
+                            {
+                                <div class="home-news__article extra">
+                                    <a asp-controller="Post" asp-action="Details" asp-route-id="@aone.Id" class="home-news__img me-3 d-block">
+                                        <img src="@Url.Content("~/contents/" + aone.Avartar)" />
+                                    </a>
+                                    <div class="d-flex flex-column flex-fill">
+                                        <span class="home-news__category">@aone.Category.Name</span>
+                                        <h4 class="home-news__title">@aone.Title</h4>
+                                    </div>
                                 </div>
-                                <div class="d-flex flex-column">
-                                    <span class="home-news__category">Danh mục tin tức</span>
-                                    <h4 class="home-news__title">Những sai lầm khi nấu ăn, gây hại cho sức khỏe nhiều người mắc phải</h4>
-                                </div>
-                            </div>
-                            <div class="home-news__article extra">
-                                <div class="home-news__img me-3">
-                                    <img src="~/assets/img/homenews-extra2.png" />
-                                </div>
-                                <div class="d-flex flex-column">
-                                    <span class="home-news__category">Danh mục tin tức</span>
-                                    <h4 class="home-news__title">Những sai lầm khi nấu ăn, gây hại cho sức khỏe nhiều người mắc phải</h4>
-                                </div>
-                            </div>
-                            <div class="home-news__article extra">
-                                <div class="home-news__img me-3">
-                                    <img src="~/assets/img/homenews-extra3.png" />
-                                </div>
-                                <div class="d-flex flex-column">
-                                    <span class="home-news__category">Danh mục tin tức</span>
-                                    <h4 class="home-news__title">Những sai lầm khi nấu ăn, gây hại cho sức khỏe nhiều người mắc phải</h4>
-                                </div>
-                            </div>
+                            }
                         </div>
                         <a href="#" >Xem tất cả &raquo;</a>
                     </div>
                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-                        Nd2...
+                        <div class="d-flex flex-column">
+                            @foreach(var atwo in Model.ArticleCateTwo)
+                            {
+                                <div class="home-news__article extra">
+                                    <a asp-controller="Post" asp-action="Details" asp-route-id="@atwo.Id" class="home-news__img me-3 d-block">
+                                        <img src="@Url.Content("~/contents/" + atwo.Avartar)" />
+                                    </a>
+                                    <div class="d-flex flex-column flex-fill">
+                                        <span class="home-news__category">@atwo.Category.Name</span>
+                                        <h4 class="home-news__title">@atwo.Title</h4>
+                                    </div>
+                                </div>
+                            }
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
-                        Nd3...
+                        <div class="d-flex flex-column">
+                            @foreach(var athree in Model.ArticleCateThree)
+                            {
+                                <div class="home-news__article extra">
+                                    <a asp-controller="Post" asp-action="Details" asp-route-id="@athree.Id" class="home-news__img me-3 d-block">
+                                        <img src="@Url.Content("~/contents/" + athree.Avartar)" />
+                                    </a>
+                                    <div class="d-flex flex-column flex-fill">
+                                        <span class="home-news__category">@athree.Category.Name</span>
+                                        <h4 class="home-news__title">@athree.Title</h4>
+                                    </div>
+                                </div>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

@@ -15,12 +15,17 @@ namespace webtuyensinh.Controllers
         {
             _context = context;
         }
-
-        public IActionResult Index()
-        {
-            return View();
-        }
-
+        //[Route("/register")]
+        //public IActionResult SignIn()
+        //{
+        //    return View();
+        //}
+        //[HttpPost]
+        //[Route("/signin")]
+        //public async Task<IActionResult> SignIn(UserModel userModel)
+        //{
+        //    return View();
+        //}
         [Route("/login")]
         public IActionResult Login()
         {

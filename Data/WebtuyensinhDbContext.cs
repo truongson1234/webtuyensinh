@@ -14,12 +14,6 @@ public class WebtuyensinhDbContext : DbContext
     {
 
     }
-
-    public DbSet<AdmissionModel> AdmissionModel { get; set; }
-    public DbSet<UserModel> UserModel { get; set; }
-    public DbSet<CategoryModel> CategoryModel { get; set; }
-    public DbSet<PostModel> PostModel { get; set; }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<UserModel>().HasData(
@@ -66,5 +60,13 @@ public class WebtuyensinhDbContext : DbContext
             new PostModel { Id = 9, CategoryId = 10, Title = "Bài viết 9", Avartar = "news-avartar.jpg", Content = "<p>Đây là nội dung bài viết</p>", Description = "......", CreatedAt = DateTime.Now },
             new PostModel { Id = 10, CategoryId = 1, Title = "Bài viết 10", Avartar = "news-avartar.jpg", Content = "<p>Đây là nội dung bài viết</p>", Description = "......", CreatedAt = DateTime.Now }
         );
+
     }
+
+    public DbSet<AdmissionModel> AdmissionModel { get; set; }
+    public DbSet<UserModel> UserModel { get; set; }
+    public DbSet<CategoryModel> CategoryModel { get; set; }
+    public DbSet<PostModel> PostModel { get; set; }
+
+    
 }
