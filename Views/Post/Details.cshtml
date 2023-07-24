@@ -1,6 +1,7 @@
 ﻿@model webtuyensinh.ViewModels.PostViewModel
 
 @{
+    
     ViewData["Title"] = "Details";
 }
 
@@ -25,6 +26,13 @@
                 <hr>
                 <p>@Html.Raw(Model.Post.Content)</p>
             </article>
+            @*<ul class="d-flex align-items-center ul-reset">
+                <li class="mr-3">Chia sẻ:</li>
+                <li><button class="facebook" onclick="window.open('https://www.facebook.com/sharer.php?u='+encodeURIComponent(location.href)+'&amp;t='+encodeURIComponent(document.title));return false"><i class="fab fa-facebook-f"></i></button></li>
+                <li><button class="instagram" onclick="window.open('https://www.instagram.com/?url='+encodeURIComponent(location.href)+'&amp;t='+encodeURIComponent(document.title));return false"><i class="fab fa-instagram"></i></button></li>
+                <li><button class="twitter" onclick="window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(location.href)+'&amp;text='+encodeURIComponent(document.title));return false"><i class="fab fa-twitter"></i></button></li>
+                <li><button class="linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(location.href)+'&amp;t='+encodeURIComponent(document.title));return false"><i class="fab fa-linkedin-in"></i></button></li>
+            </ul>*@
         </div>
 
         <div class="col-md-4">

@@ -10,5 +10,9 @@
   {
     "outputFile": "wwwroot/assets/admin/css/all.css",
     "inputFile": "wwwroot/assets/admin/css/all.scss"
+  },
+  {
+    "outputFile": "wwwroot/assets/css/pages/home.css",
+    "inputFile": "wwwroot/assets/css/pages/home.scss"
   }
 ]

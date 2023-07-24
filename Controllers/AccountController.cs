@@ -4,9 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using webtuyensinh.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authorization;
+using webtuyensinh.Filters;
 
 namespace webtuyensinh.Controllers
 {
+    [RedirectIfAuthenticated]
     public class AccountController : Controller
     {
         private readonly WebtuyensinhDbContext _context;
@@ -15,17 +19,22 @@ namespace webtuyensinh.Controllers
         {
             _context = context;
         }
-        //[Route("/register")]
-        //public IActionResult SignIn()
-        //{
-        //    return View();
-        //}
-        //[HttpPost]
-        //[Route("/signin")]
-        //public async Task<IActionResult> SignIn(UserModel userModel)
-        //{
-        //    return View();
-        //}
+        [Route("/register")]
+        public IActionResult SignIn()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
+        }
+        [HttpPost]
+        [Route("/signin")]
+        public async Task<IActionResult> SignIn(UserModel userModel)
+        {
+            
+            return View();
+        }
         [Route("/login")]
         public IActionResult Login()
         {

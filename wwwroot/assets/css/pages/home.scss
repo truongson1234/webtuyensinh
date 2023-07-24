@@ -63,6 +63,11 @@
         background: var(--1, #007DD1);
         position: relative;
 
+        &.none {
+            opacity: 0;
+            visibility: hidden;
+        }
+
         .f1 {
             margin-bottom: 15px;
             color: #FFF;
@@ -107,16 +112,12 @@
     }
 
     .home-reason__wrapper {
-        display: flex;
-        justify-content: space-between;
-        align-content: center;
-        align-items: center;
     }
 
     .home-reason__item {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
 
         .home-reason__icon {
@@ -129,6 +130,10 @@
             border-radius: 13px;
             background: #E05194;
             background-color: var(--hri-color);
+        }
+
+        .home-reason__name {
+            text-align: center;
         }
     }
 }

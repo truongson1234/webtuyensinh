@@ -7,7 +7,7 @@
     <link href="~/assets/css/pages/home.css" rel="stylesheet" />
 }
 <div class="home-introduce">
-    <div class="container pt-5 pb-3 d-flex justify-content-between h-100">
+    <div class="container pt-5 pb-3 d-flex justify-content-between h-100 position-relative">
         <div class="home-introduce__content">
             <div class="home-introduce__title">
                 <h1 class="t1">Tuyển Sinh</h1>
@@ -18,84 +18,86 @@
             </p>
             <a href="#" class="home-introduce__btn-signin">Đăng ký ngay</a>
         </div>
-        @using (Html.BeginForm("Create", "Customer", FormMethod.Post, new { @class = "home-introduce__form px-3 pt-5 pb-4" }))
-        {
-            <button class="home-introduce__btn-close"><i class="fas fa-times"></i></button>
-            <h3 class="f1">ĐĂNG KÝ THÔNG TIN</h3>
-            <div class="mb-3 w-100">
-                @Html.TextBoxFor(model => model.AdmissionModel.Name, new { @class = "form-control", placeholder = "Họ và tên*" })
-                @Html.ValidationMessageFor(model => model.AdmissionModel.Name)
-            </div>
+        <div class="home-introduce__modal">
+            @using (Html.BeginForm("Create", "Customer", FormMethod.Post, new { @class = "home-introduce__form px-3 pt-5 pb-4" }))
+            {
+                <button class="home-introduce__btn-close"><i class="fas fa-times"></i></button>
+                <h3 class="f1">ĐĂNG KÝ THÔNG TIN</h3>
+                <div class="mb-3 w-100">
+                    @Html.TextBoxFor(model => model.AdmissionModel.Name, new { @class = "form-control", placeholder = "Họ và tên*" })
+                    @Html.ValidationMessageFor(model => model.AdmissionModel.Name)
+                </div>
 
-            <div class="mb-3 w-100">
-                @Html.TextBoxFor(model => model.AdmissionModel.Address, new { @class = "form-control", placeholder = "Địa chỉ*" })
-                @Html.ValidationMessageFor(model => model.AdmissionModel.Address)
-            </div>
+                <div class="mb-3 w-100">
+                    @Html.TextBoxFor(model => model.AdmissionModel.Address, new { @class = "form-control", placeholder = "Địa chỉ*" })
+                    @Html.ValidationMessageFor(model => model.AdmissionModel.Address)
+                </div>
 
-            <div class="mb-3 w-100">
-                @Html.TextBoxFor(model => model.AdmissionModel.PhoneNumber, new { @class = "form-control", placeholder = "Số điện thoại*" })
-                @Html.ValidationMessageFor(model => model.AdmissionModel.PhoneNumber)
-            </div>
+                <div class="mb-3 w-100">
+                    @Html.TextBoxFor(model => model.AdmissionModel.PhoneNumber, new { @class = "form-control", placeholder = "Số điện thoại*" })
+                    @Html.ValidationMessageFor(model => model.AdmissionModel.PhoneNumber)
+                </div>
 
-            <div class="mb-3 w-100">
-                <select class="form-control" asp-for="AdmissionModel.EducationLevel" asp-items="Html.GetEnumSelectList<LevelOptions>()">
-                    <option selected>Bậc học và đất nước quan tâm</option>
-                </select>
-                @Html.ValidationMessageFor(model => model.AdmissionModel.EducationLevel)
-            </div>
+                <div class="mb-3 w-100">
+                    <select class="form-control" asp-for="AdmissionModel.EducationLevel" asp-items="Html.GetEnumSelectList<LevelOptions>()">
+                        <option selected>Bậc học và đất nước quan tâm</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.AdmissionModel.EducationLevel)
+                </div>
 
-            <div class="mb-3 w-100">
-                <select class="form-control" asp-for="AdmissionModel.TypeOfTraining" asp-items="Html.GetEnumSelectList<TypeOptions>()">
-                    <option selected>Hình thức học</option>
-                </select>
-                @Html.ValidationMessageFor(model => model.AdmissionModel.TypeOfTraining)
-            </div>
+                <div class="mb-3 w-100">
+                    <select class="form-control" asp-for="AdmissionModel.TypeOfTraining" asp-items="Html.GetEnumSelectList<TypeOptions>()">
+                        <option selected>Hình thức học</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.AdmissionModel.TypeOfTraining)
+                </div>
 
-            <div class="mb-3 w-100">
-                @Html.TextBoxFor(model => model.AdmissionModel.Desire, new { @class = "form-control", placeholder = "Chuyên ngành hay đất nước bạn muốn đến?" })
-                @Html.ValidationMessageFor(model => model.AdmissionModel.Desire)
-            </div>
+                <div class="mb-3 w-100">
+                    @Html.TextBoxFor(model => model.AdmissionModel.Desire, new { @class = "form-control", placeholder = "Chuyên ngành hay đất nước bạn muốn đến?" })
+                    @Html.ValidationMessageFor(model => model.AdmissionModel.Desire)
+                </div>
 
-            <button type="submit" class="btn btn-submit btn-primary">XÁC NHẬN</button>
-        }
+                <button type="submit" class="btn btn-submit btn-primary">XÁC NHẬN</button>
+            }
+        </div>
     </div>
 </div>
 
 <div class="home-reason py-5">
     <div class="container">
         <h1 class="home-reason__title mb-4">Tại sao chọn dịch vụ của chúng tôi?</h1>
-        <div class="home-reason__wrapper">
-            <div class="home-reason__item">
+        <div class="row home-reason__wrapper">
+            <div class="home-reason__item col-6 col-sm-4 col-md-2">
                 <div class="home-reason__icon mb-3" style="--hri-color: #E05194;">
                     <i class="fal fa-alarm-clock"></i>
                 </div>
                 <p class="home-reason__name">Thời gian linh hoạt</p>
             </div>
-            <div class="home-reason__item">
+            <div class="home-reason__item col-6 col-sm-4 col-md-2">
                 <div class="home-reason__icon mb-3" style="--hri-color: #AC85FF;">
                     <i class="far fa-search"></i>
                 </div>
                 <p class="home-reason__name">Tìm kiếm địa điểm lý tưởng</p>
             </div>
-            <div class="home-reason__item">
+            <div class="home-reason__item col-6 col-sm-4 col-md-2">
                 <div class="home-reason__icon mb-3" style="--hri-color: #AFB83B;">
                     <i class="fal fa-clipboard-list-check"></i>
                 </div>
                 <p class="home-reason__name">Dễ dàng đăng ký</p>
             </div>
-            <div class="home-reason__item">
+            <div class="home-reason__item col-6 col-sm-4 col-md-2">
                 <div class="home-reason__icon mb-3" style="--hri-color: #14AAF5;">
                     <i class="fal fa-lightbulb-on"></i>
                 </div>
                 <p class="home-reason__name">Gợi ý vị trí tuyển dụng</p>
             </div>
-            <div class="home-reason__item">
+            <div class="home-reason__item col-6 col-sm-4 col-md-2">
                 <div class="home-reason__icon mb-3" style="--hri-color: #FE753E;">
                     <i class="fal fa-file-alt"></i>
                 </div>
                 <p class="home-reason__name">Cung cấp tài liệu</p>
             </div>
-            <div class="home-reason__item">
+            <div class="home-reason__item col-6 col-sm-4 col-md-2">
                 <div class="home-reason__icon mb-3" style="--hri-color: #E05194;">
                     <i class="fal fa-file-check"></i>
                 </div>
@@ -109,11 +111,11 @@
 <div class="home-news mb-5">
     <div class="container">
         <nav class="home-news__header row">
-            <div class="col-8 d-flex align-items-center">
+            <div class="col col-lg-8 d-flex align-items-center">
                 <h3 class="home-news__topic">Tin tức &#8226;</h3>
                 <span class="home-news__hline"></span>
             </div>
-            <div class="nav nav-tabs col-4" id="nav-tab" role="tablist">
+            <div class="nav nav-tabs d-none d-lg-block col-4" id="nav-tab" role="tablist">
                 <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
                     Tuyển sinh
                 </button>
@@ -126,11 +128,11 @@
             </div>
         </nav>
         <div class="home-news__wrapper row">
-            <div class="home-news__main col-8">
+            <div class="home-news__main col col-lg-8">
                 <div class="row">
                     @foreach(var am in Model.ArticleMain)
                     {
-                        <div class="col-6">
+                        <div class="col-12 col-md-6">
                             <div class="home-news__article main">
                                 <a asp-controller="Post" asp-action="Details" asp-route-id="@am.Id" class="home-news__img d-block">
                                     <img src="@Url.Content("~/contents/" + am.Avartar)" />
@@ -146,7 +148,7 @@
                 </div>
             </div
             <div class="home-news__extra">
-                <div class="tab-content col-4" id="nav-tabContent">
+                <div class="tab-content d-none d-lg-block col-lg-4 mt-3" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
                         <div class="d-flex flex-column">
                             @foreach(var aone in Model.ArticleCateOne)
@@ -354,7 +356,7 @@
     </div>    
     <div class="container">
         <div class="row mb-3">
-            <div class="col-8">
+            <div class="col-12 col-md-8 mb-3 mb-md-0">
                 <div class="study-abroad__item">
                     <div class="study-abroad__img"></div>
                      <img src="~/assets/img/japan.png" />
@@ -363,7 +365,7 @@
                     <span class="study-abroad__slg">4 danh sách</span>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-12 col-md-4 mb-3 mb-md-0">
                 <div class="study-abroad__item">
                     <div class="study-abroad__img"></div>
                     <img src="~/assets/img/korea.png" />
@@ -374,7 +376,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-4">
+            <div class="col-12 col-md-4 mb-3 mb-md-0">
                 <div class="study-abroad__item">
                     <div class="study-abroad__img"></div>
                     <img src="~/assets/img/japan.png" />
@@ -383,7 +385,7 @@
                     <span class="study-abroad__slg">4 danh sách</span>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-12 col-md-4 mb-3 mb-md-0">
                 <div class="study-abroad__item">
                     <div class="study-abroad__img"></div>
                     <img src="~/assets/img/australia.png" />
@@ -392,7 +394,7 @@
                     <span class="study-abroad__slg">4 danh sách</span>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-12 col-md-4">
                 <div class="study-abroad__item">
                     <div class="study-abroad__img"></div>
                     <img src="~/assets/img/canada.png" />
@@ -408,41 +410,41 @@
 <div class="labor-export py-5 mb-5">
     <div class="container">
         <div class="labor-export__row row">
-            <div class="labor-export__col content col-6">
+            <div class="labor-export__col content col-12 col-md-6">
                 <h1 class="labor-export__topic">Xuất khẩu lao động</h1>
                 <p class="labor-export__introduct pe-3">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                 </p>
                 <a href="#" class="labor-export__linkall">Xem tất cả &raquo;</a>
             </div>
-            <div class="labor-export__col col-3">
+            <div class="labor-export__col col-12 col-md-3">
                 <div class="study-abroad__bg blue"></div>
                 <img src="~/assets/img/german-labor.png" />
                 <h4 class="labor-export__country-name">&rArr; LAO ĐỘNG ĐỨC</h4>
             </div>
-            <div class="labor-export__col col-3">
+            <div class="labor-export__col col-12 col-md-3">
                 <div class="study-abroad__bg red"></div>
                 <img src="~/assets/img/korean-labor.png" />
                 <h4 class="labor-export__country-name">&rArr; LAO ĐỘNG HÀN QUỐC</h4>
             </div>
         </div>
         <div class="labor-export__row row">
-            <div class="labor-export__col col-3">
+            <div class="labor-export__col col-12 col-md-3">
                 <div class="study-abroad__bg blue"></div>
                 <img src="~/assets/img/japanese-labor.png" />
                 <h4 class="labor-export__country-name">&rArr; LAO ĐỘNG nhật</h4>
             </div>
-            <div class="labor-export__col col-3">
+            <div class="labor-export__col col-12 col-md-3">
                 <div class="study-abroad__bg red"></div>
                 <img src="~/assets/img/australian-labor.png" />
                 <h4 class="labor-export__country-name">&rArr; LAO ĐỘNG úc</h4>
             </div>
-            <div class="labor-export__col col-3">
+            <div class="labor-export__col col-12 col-md-3">
                 <div class="study-abroad__bg blue"></div>
                 <img src="~/assets/img/canadian-labor.png" />
                 <h4 class="labor-export__country-name">&rArr; LAO ĐỘNG canada</h4>
             </div>
-            <div class="labor-export__col col-3">
+            <div class="labor-export__col col-12 col-md-3">
                 <div class="study-abroad__bg red"></div>
                 <img src="~/assets/img/singapore-labor.png" />
                 <h4 class="labor-export__country-name">&rArr; LAO ĐỘNG singapore</h4>
@@ -671,7 +673,7 @@
 <div class="home-ending py-5">
     <div class="container">
         <div class="row">
-            <div class="col-5">
+            <div class="col-12 col-md-5 mb-3 mb-md-0">
                 <form class="home-ending__form px-3 pt-5 pb-4">
                     <h3 class="f1">ĐĂNG KÝ THÔNG TIN</h3>
                     <p class="f2 mb-3">Để nhận chương trình khuyến mãi</p>
@@ -719,7 +721,7 @@
                     <button type="submit" class="btn btn-submit btn-primary">XÁC NHẬN</button>
                 </form>
             </div>
-            <div class="col-7">
+            <div class="col-12 col-md-7">
                 <div class="row mb-3">
                     <div class="col">
                         <div class="home-ending__video">
@@ -763,6 +765,9 @@
                     items:1
                 },
                 768:{
+                    items:2
+                },
+                992:{
                     items:3
                 },
             }
@@ -793,12 +798,19 @@
             dots: false,
             responsive:{
                 0:{
-                    items:1
+                    items:2.5
                 },
                 768:{
+                    items:4.5
+                },
+                992:{
                     items:6
                 },
             }
+        })
+
+        $(".home-introduce__btn-signin").click(() => {
+            $(".home-introduce__form").toggleClass("none")
         })
     </script>
 }

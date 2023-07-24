@@ -12,7 +12,7 @@ using X.PagedList;
 
 namespace webtuyensinh.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly WebtuyensinhDbContext _context;
@@ -24,7 +24,6 @@ namespace webtuyensinh.Controllers
         {
             return View();
         }
-
 
         ///ADMISSION
         public IActionResult AdmissionsManager(int? page, string searchA = "")
