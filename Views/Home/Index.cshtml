@@ -6,6 +6,7 @@
 {
     <link href="~/assets/css/pages/home.css" rel="stylesheet" />
 }
+
 <div class="home-introduce">
     <div class="container pt-5 pb-3 d-flex justify-content-between h-100 position-relative">
         <div class="home-introduce__content">
@@ -210,88 +211,38 @@
         <h1 class="home-enrollment__topic">Tuyển sinh</h1>
         <p class="home-enrollment__slogan mb-5">Cao học, Đại học, Liên thông, Đào tạo từ xa, VHVL, Văn bằng 2, Cao đẳng, Trung cấp.</p>
         <div class="home-enrollment__carousel owl-carousel owl-theme">
-            <div class="home-enrollment__item shadow">
-                <div class="home-enrollment__img">
-                    <img src="~/assets/img/homeenrollment-slide1.png" />
-                </div>
-                <div class="p-4">
-                    <div class="home-enrollment__overview">
-                        <div class="home-enrollment__school">
-                            <i class="far fa-map-marker-alt"></i>
-                            <span>69 trường</span>
-                        </div>
-                        <div class="home-enrollment__stars">
-                            <i class="fas fa-star ac"></i>
-                            <i class="fas fa-star ac"></i>
-                            <i class="fas fa-star ac"></i>
-                            <i class="fas fa-star ac"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
+            @foreach(var cate in Model.Categories)
+            {
+                <div class="home-enrollment__item shadow">
+                    <div class="home-enrollment__img">
+                        <img src="~/assets/img/homeenrollment-slide1.png" />
                     </div>
-                    <h3 class="home-enrollment__title my-3">Tuyển sinh Cao học</h3>
-                    <p class="home-enrollment__content">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
-                    </p>
-                    <a href="#" class="home-enrollment__btn">
-                        Xem thêm
-                    </a>
-                </div>
-            </div>
-            <div class="home-enrollment__item">
-                <div class="home-enrollment__img">
-                    <img src="~/assets/img/homeenrollment-slide2.png" />
-                </div>
-                <div class="p-4">
-                    <div class="home-enrollment__overview">
-                        <div class="home-enrollment__school">
-                            <i class="far fa-map-marker-alt"></i>
-                            <span>69 trường</span>
+                    <div class="p-4">
+                        <div class="home-enrollment__overview">
+                            <div class="home-enrollment__school">
+                                <i class="far fa-map-marker-alt"></i>
+                                <span>@cate.Posts.Count() trường</span>
+                            </div>
+                            <div class="home-enrollment__stars">
+                                <i class="fas fa-star ac"></i>
+                                <i class="fas fa-star ac"></i>
+                                <i class="fas fa-star ac"></i>
+                                <i class="fas fa-star ac"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
                         </div>
-                        <div class="home-enrollment__stars">
-                            <i class="fas fa-star ac"></i>
-                            <i class="fas fa-star ac"></i>
-                            <i class="fas fa-star ac"></i>
-                            <i class="fas fa-star ac"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
+                        <h3 class="home-enrollment__title my-3">@cate.Name</h3>
+                        <p class="home-enrollment__content">
+                            @cate.Description
+                        </p>
+                        <a href="#" class="home-enrollment__btn">
+                            Xem thêm
+                        </a>
                     </div>
-                    <h3 class="home-enrollment__title my-3">Tuyển sinh Cao học</h3>
-                    <p class="home-enrollment__content">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
-                    </p>
-                    <a href="#" class="home-enrollment__btn">
-                        Xem thêm
-                    </a>
                 </div>
-            </div>
-            <div class="home-enrollment__item shadow">
-                <div class="home-enrollment__img">
-                    <img src="~/assets/img/homeenrollment-slide1.png" />
-                </div>
-                <div class="p-4">
-                    <div class="home-enrollment__overview">
-                        <div class="home-enrollment__school">
-                            <i class="far fa-map-marker-alt"></i>
-                            <span>69 trường</span>
-                        </div>
-                        <div class="home-enrollment__stars">
-                            <i class="fas fa-star ac"></i>
-                            <i class="fas fa-star ac"></i>
-                            <i class="fas fa-star ac"></i>
-                            <i class="fas fa-star ac"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                    <h3 class="home-enrollment__title my-3">Tuyển sinh Cao học</h3>
-                    <p class="home-enrollment__content">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
-                    </p>
-                    <a href="#" class="home-enrollment__btn">
-                        Xem thêm
-                    </a>
-                </div>
-            </div>
-            <div class="home-enrollment__item shadow">
+            }
+            
+            @*<div class="home-enrollment__item shadow">
                 <div class="home-enrollment__img">
                     <img src="~/assets/img/homeenrollment-slide2.png" />
                 </div>
@@ -317,34 +268,7 @@
                         Xem thêm
                     </a>
                 </div>
-            </div>
-            <div class="home-enrollment__item shadow">
-                <div class="home-enrollment__img">
-                    <img src="~/assets/img/homeenrollment-slide1.png" />
-                </div>
-                <div class="p-4">
-                    <div class="home-enrollment__overview">
-                        <div class="home-enrollment__school">
-                            <i class="far fa-map-marker-alt"></i>
-                            <span>69 trường</span>
-                        </div>
-                        <div class="home-enrollment__stars">
-                            <i class="fas fa-star ac"></i>
-                            <i class="fas fa-star ac"></i>
-                            <i class="fas fa-star ac"></i>
-                            <i class="fas fa-star ac"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                    <h3 class="home-enrollment__title my-3">Tuyển sinh Cao học</h3>
-                    <p class="home-enrollment__content">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
-                    </p>
-                    <a href="#" class="home-enrollment__btn">
-                        Xem thêm
-                    </a>
-                </div>
-            </div>
+            </div>*@
         </div>
     </div>
 </div>

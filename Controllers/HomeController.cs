@@ -3,115 +3,38 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections;
 using System.Diagnostics;
 using webtuyensinh.Models;
+using webtuyensinh.Services;
 using webtuyensinh.ViewModels;
-using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace webtuyensinh.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly WebtuyensinhDbContext _context;
+        private readonly HomeService _service;
 
-        public HomeController(ILogger<HomeController> logger, WebtuyensinhDbContext context)
+        public HomeController(HomeService service)
         {
-            _logger = logger;
-            _context = context;
+            _service = service;
         }
 
         public IActionResult Index()
         {
             //Lấy ra 2 bản ghi mới nhất
-            var article_main = _context.PostModel
-                .Join(_context.CategoryModel,
-                        p1 => p1.CategoryId,
-                        c2 => c2.Id,
-                        (p1, c2) => new PostModel
-                        {
-                            Id = p1.Id,
-                            Title = p1.Title,
-                            Avartar = p1.Avartar,
-                            Content = p1.Content,
-                            Description = p1.Description,
-                            CreatedAt = p1.CreatedAt,
-                            UpdatedAt = p1.UpdatedAt,
-                            CategoryId = p1.CategoryId,
-                            Category = c2,
-                        }
-                        )
-                .OrderBy(x => x.CreatedAt)
-                .Take(2);
+            var article_main = _service.GetPostsMain();
+
             //Lấy ra 3 bản mới nhất của các danh mục
-            var article_tab1 = _context.PostModel
-                .Join(_context.CategoryModel,
-                        p1 => p1.CategoryId,
-                        c2 => c2.Id,
-                        (p1, c2) => new PostModel
-                        {
-                            Id = p1.Id,
-                            Title = p1.Title,
-                            Avartar = p1.Avartar,
-                            Content = p1.Content,
-                            Description = p1.Description,
-                            CreatedAt = p1.CreatedAt,
-                            UpdatedAt = p1.UpdatedAt,
-                            CategoryId = p1.CategoryId,
-                            Category = c2,
-                        }
-                        )
-                .Where(at1 => at1.CategoryId == 1)
-                .OrderBy(x => x.CreatedAt)
-                .Take(3);
-            var article_tab2 = _context.PostModel
-                .Join(_context.CategoryModel,
-                        p1 => p1.CategoryId,
-                        c2 => c2.Id,
-                        (p1, c2) => new PostModel
-                        {
-                            Id = p1.Id,
-                            Title = p1.Title,
-                            Avartar = p1.Avartar,
-                            Content = p1.Content,
-                            Description = p1.Description,
-                            CreatedAt = p1.CreatedAt,
-                            UpdatedAt = p1.UpdatedAt,
-                            CategoryId = p1.CategoryId,
-                            Category = c2,
-                        }
-                        )
-                .Where(at2 => at2.CategoryId == 2)
-                .OrderBy(x => x.CreatedAt)
-                .Take(3);
-            var article_tab3 = _context.PostModel
-                .Join(_context.CategoryModel,
-                        p1 => p1.CategoryId,
-                        c2 => c2.Id,
-                        (p1, c2) => new PostModel
-                        {
-                            Id = p1.Id,
-                            Title = p1.Title,
-                            Avartar = p1.Avartar,
-                            Content = p1.Content,
-                            Description = p1.Description,
-                            CreatedAt = p1.CreatedAt,
-                            UpdatedAt = p1.UpdatedAt,
-                            CategoryId = p1.CategoryId,
-                            Category = c2,
-                        }
-                        )
-                .Where(at3 => at3.CategoryId == 3)
-                .OrderBy(x => x.CreatedAt)
-                .Take(3);
+            var article_tab1 = _service.GetPostsTab(1);
+            var article_tab2 = _service.GetPostsTab(2);
+            var article_tab3 = _service.GetPostsTab(3);
 
             //Lấy ra 6 bản ghi danh mục
-            //var cates = _context.CategoryModel
-            //    .GroupBy(ct => ct.Posts)
-            //    .Select(ct => new
-            //    {
-            //        Category = ct,
-            //        Pcount = ct.Count()
-            //    })
-            //    .Take(6);
+            var cates = _service.GetCategories();
+
+            var cate_germany = _service.GetCategoryById(2);
+            var cate_korea = _service.GetCategoryById(2);
+            var cate_japan = _service.GetCategoryById(2);
+            var cate_australia = _service.GetCategoryById(2);
+            var cate_canada = _service.GetCategoryById(2);
 
             var model = new HomeViewModel
             {
@@ -119,7 +42,15 @@ namespace webtuyensinh.Controllers
                 ArticleCateOne = article_tab1,
                 ArticleCateTwo = article_tab2,
                 ArticleCateThree = article_tab3,
-                //Categories = cates
+                Categories = cates,
+                CateNation = new List<CategoryModel>
+                {
+                    cate_germany,
+                    cate_korea,
+                    cate_japan,
+                    cate_australia,
+                    cate_canada
+                }
             };
 
             return View(model);
@@ -130,12 +61,5 @@ namespace webtuyensinh.Controllers
         {
             return View();
         }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
     }
 }

@@ -9,6 +9,7 @@ namespace webtuyensinh.ViewModels
         public IEnumerable<PostModel> ArticleCateTwo { get; set; }
         public IEnumerable<PostModel> ArticleCateThree { get; set; }
         public IEnumerable<CategoryModel> Categories { get; set; }
+        public IEnumerable<CategoryModel> CateNation { get; set; }
         public AdmissionModel AdmissionModel { get; set; }
     }
 }

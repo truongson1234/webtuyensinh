@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Hosting;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace webtuyensinh.Models
@@ -13,6 +12,6 @@ namespace webtuyensinh.Models
         public string Description { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
-        public ICollection<PostModel> Posts { get; } = new List<PostModel>();
+        public IEnumerable<PostModel> Posts { get; set; } = new List<PostModel>();
     }
 }

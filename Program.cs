@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Options;
 using webtuyensinh.Middleware;
+using webtuyensinh.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<WebtuyensinhDbContext>(options =>
@@ -18,6 +19,8 @@ builder.Services.AddAuthentication(
             option.LoginPath = "/login";
             option.ExpireTimeSpan = TimeSpan.FromMinutes(20);
         });
+
+builder.Services.AddScoped<HomeService>();
 
 var app = builder.Build();
 
