@@ -4,6 +4,7 @@ namespace webtuyensinh.ViewModels
 {
     public class HomeViewModel
     {
+        public IEnumerable<MenuModel> Menu { get; set; }
         public IEnumerable<PostModel> ArticleMain { get; set; }
         public IEnumerable<PostModel> ArticleCateOne { get; set; }
         public IEnumerable<PostModel> ArticleCateTwo { get; set; }

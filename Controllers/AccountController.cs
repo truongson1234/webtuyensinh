@@ -67,7 +67,7 @@ namespace webtuyensinh.Controllers
 
             return View();
         }
-
+        [Route("/logout")]
         public async Task<IActionResult> Logout()
         {
             // Clear the existing external cookie

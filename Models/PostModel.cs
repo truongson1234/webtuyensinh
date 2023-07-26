@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace webtuyensinh.Models
 {
-    [Table("Post")]
+    [Table("Posts")]
     public class PostModel
     {
         [Key]

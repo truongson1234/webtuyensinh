@@ -10,6 +10,13 @@ namespace webtuyensinh.Services
         {
             _context = context;
         }
+        public IEnumerable<MenuModel> GetMenu(int id)
+        {
+            return _context.MenuModel
+                .Where(m => m.GroupID == id)
+                .OrderBy(m => m.DisplayOrder)
+                .ToList();
+        }
         public IEnumerable<PostModel> GetPostsMain()
         {
             return _context.PostModel

@@ -1,6 +1,7 @@
 ﻿@model webtuyensinh.ViewModels.HomeViewModel
 @{
     ViewData["Title"] = "Home Page";
+    ViewData["Menu"] = Model.Menu;
 }
 @section Styles
 {
@@ -286,7 +287,7 @@
                      <img src="~/assets/img/japan.png" />
                     <h3 class="study-abroad__title">Đức</h3>
                     <p class="study-abroad__subtitle">Trung tâm kinh tế</p>
-                    <span class="study-abroad__slg">4 danh sách</span>
+                    <span class="study-abroad__slg">@Model.CateNation.ElementAt(0).Posts.Count() danh sách</span>
                 </div>
             </div>
             <div class="col-12 col-md-4 mb-3 mb-md-0">
@@ -295,7 +296,7 @@
                     <img src="~/assets/img/korea.png" />
                     <h3 class="study-abroad__title">Hàn Quốc</h3>
                     <p class="study-abroad__subtitle">Trung tâm kinh tế</p>
-                    <span class="study-abroad__slg">4 danh sách</span>
+                    <span class="study-abroad__slg">@Model.CateNation.ElementAt(1).Posts.Count() danh sách</span>
                 </div>
             </div>
         </div>
@@ -306,7 +307,7 @@
                     <img src="~/assets/img/japan.png" />
                     <h3 class="study-abroad__title">Nhật</h3>
                     <p class="study-abroad__subtitle">Trung tâm kinh tế</p>
-                    <span class="study-abroad__slg">4 danh sách</span>
+                    <span class="study-abroad__slg">@Model.CateNation.ElementAt(1).Posts.Count() danh sách</span>
                 </div>
             </div>
             <div class="col-12 col-md-4 mb-3 mb-md-0">
@@ -315,7 +316,7 @@
                     <img src="~/assets/img/australia.png" />
                     <h3 class="study-abroad__title">Úc</h3>
                     <p class="study-abroad__subtitle">Trung tâm kinh tế</p>
-                    <span class="study-abroad__slg">4 danh sách</span>
+                    <span class="study-abroad__slg">@Model.CateNation.ElementAt(2).Posts.Count() danh sách</span>
                 </div>
             </div>
             <div class="col-12 col-md-4">
@@ -324,7 +325,7 @@
                     <img src="~/assets/img/canada.png" />
                     <h3 class="study-abroad__title">Canada</h3>
                     <p class="study-abroad__subtitle">Trung tâm kinh tế</p>
-                    <span class="study-abroad__slg">4 danh sách</span>
+                    <span class="study-abroad__slg">@Model.CateNation.ElementAt(3).Posts.Count() danh sách</span>
                 </div>
             </div>
         </div>

@@ -19,6 +19,7 @@ namespace webtuyensinh.Controllers
 
         public IActionResult Index()
         {
+            var menu = _service.GetMenu(1);
             //Lấy ra 2 bản ghi mới nhất
             var article_main = _service.GetPostsMain();
 
@@ -30,14 +31,15 @@ namespace webtuyensinh.Controllers
             //Lấy ra 6 bản ghi danh mục
             var cates = _service.GetCategories();
 
-            var cate_germany = _service.GetCategoryById(2);
+            var cate_germany = _service.GetCategoryById(1);
             var cate_korea = _service.GetCategoryById(2);
-            var cate_japan = _service.GetCategoryById(2);
-            var cate_australia = _service.GetCategoryById(2);
-            var cate_canada = _service.GetCategoryById(2);
+            var cate_japan = _service.GetCategoryById(3);
+            var cate_australia = _service.GetCategoryById(9);
+            var cate_canada = _service.GetCategoryById(5);
 
             var model = new HomeViewModel
             {
+                Menu = menu,
                 ArticleMain = article_main,
                 ArticleCateOne = article_tab1,
                 ArticleCateTwo = article_tab2,

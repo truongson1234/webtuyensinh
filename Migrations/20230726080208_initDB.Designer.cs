@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace webtuyensinh.Migrations
 {
     [DbContext(typeof(WebtuyensinhDbContext))]
-    [Migration("20230720121156_Initial")]
-    partial class Initial
+    [Migration("20230726080208_initDB")]
+    partial class initDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -62,14 +62,14 @@ namespace webtuyensinh.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Admission");
+                    b.ToTable("Admissions");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
                             Address = "Hà Nội",
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(2670),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2109),
                             Desire = "......",
                             EducationLevel = 5,
                             Name = "Nguyễn Văn A1",
@@ -80,7 +80,7 @@ namespace webtuyensinh.Migrations
                         {
                             Id = 2,
                             Address = "Đà Nẵng",
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(2675),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2115),
                             Desire = "......",
                             EducationLevel = 5,
                             Name = "Nguyễn Văn A2",
@@ -91,7 +91,7 @@ namespace webtuyensinh.Migrations
                         {
                             Id = 3,
                             Address = "Hà Nội",
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(2680),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2120),
                             Desire = "......",
                             EducationLevel = 5,
                             Name = "Nguyễn Văn A3",
@@ -102,7 +102,7 @@ namespace webtuyensinh.Migrations
                         {
                             Id = 4,
                             Address = "HCM",
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(2685),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2124),
                             Desire = "......",
                             EducationLevel = 5,
                             Name = "Nguyễn Văn A4",
@@ -113,7 +113,7 @@ namespace webtuyensinh.Migrations
                         {
                             Id = 5,
                             Address = "HCM",
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(2849),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2129),
                             Desire = "......",
                             EducationLevel = 5,
                             Name = "Nguyễn Văn A5",
@@ -124,7 +124,7 @@ namespace webtuyensinh.Migrations
                         {
                             Id = 6,
                             Address = "HCM",
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(2854),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2134),
                             Desire = "......",
                             EducationLevel = 5,
                             Name = "Nguyễn Văn A6",
@@ -135,7 +135,7 @@ namespace webtuyensinh.Migrations
                         {
                             Id = 7,
                             Address = "Hà Nội",
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(2859),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2139),
                             Desire = "......",
                             EducationLevel = 5,
                             Name = "Nguyễn Văn A7",
@@ -146,7 +146,7 @@ namespace webtuyensinh.Migrations
                         {
                             Id = 8,
                             Address = "Hà Nội",
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(2865),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2143),
                             Desire = "......",
                             EducationLevel = 5,
                             Name = "Nguyễn Văn A8",
@@ -157,7 +157,7 @@ namespace webtuyensinh.Migrations
                         {
                             Id = 9,
                             Address = "Đà Nẵng",
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(2871),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2148),
                             Desire = "......",
                             EducationLevel = 5,
                             Name = "Nguyễn Văn A9",
@@ -168,7 +168,7 @@ namespace webtuyensinh.Migrations
                         {
                             Id = 10,
                             Address = "Hà Nội",
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(2877),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2153),
                             Desire = "......",
                             EducationLevel = 5,
                             Name = "Nguyễn Văn A10",
@@ -201,78 +201,226 @@ namespace webtuyensinh.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category");
+                    b.ToTable("Categories");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(2950),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2215),
                             Description = "......",
                             Name = "Danh mục tin tức 1"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(2955),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2221),
                             Description = "......",
                             Name = "Danh mục tin tức 2"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(2959),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2224),
                             Description = "......",
                             Name = "Danh mục tin tức 3"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(2963),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2228),
                             Description = "......",
                             Name = "Danh mục tin tức 4"
                         },
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(2966),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2232),
                             Description = "......",
                             Name = "Danh mục tin tức 5"
                         },
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(2970),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2236),
                             Description = "......",
                             Name = "Danh mục tin tức 6"
                         },
                         new
                         {
                             Id = 7,
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(2974),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2240),
                             Description = "......",
                             Name = "Danh mục tin tức 7"
                         },
                         new
                         {
                             Id = 8,
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(2978),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2244),
                             Description = "......",
                             Name = "Danh mục tin tức 8"
                         },
                         new
                         {
                             Id = 9,
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(2982),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2248),
                             Description = "......",
                             Name = "Danh mục tin tức 9"
                         },
                         new
                         {
                             Id = 10,
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(2986),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2251),
                             Description = "......",
                             Name = "Danh mục tin tức 10"
+                        });
+                });
+
+            modelBuilder.Entity("webtuyensinh.Models.MenuGroupModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MenuGroups");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2517),
+                            Name = "Home"
+                        });
+                });
+
+            modelBuilder.Entity("webtuyensinh.Models.MenuModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Action")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("Controller")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DisplayCondition")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("DisplayOrder")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("GroupID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<bool?>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Target")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("URL")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GroupID");
+
+                    b.ToTable("Menus");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2563),
+                            DisplayCondition = 0,
+                            DisplayOrder = 1,
+                            GroupID = 1,
+                            Name = "Giới thiệu",
+                            Status = true,
+                            Target = "_self",
+                            URL = "/"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Action = "Privacy",
+                            Controller = "Home",
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2570),
+                            DisplayCondition = 0,
+                            DisplayOrder = 2,
+                            GroupID = 1,
+                            Name = "Privacy",
+                            Status = true,
+                            Target = "_blank"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2576),
+                            DisplayCondition = 0,
+                            DisplayOrder = 3,
+                            GroupID = 1,
+                            Name = "Đăng nhập",
+                            Status = true,
+                            Target = "_self",
+                            URL = "/login"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Action = "Index",
+                            Controller = "Admin",
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2582),
+                            DisplayCondition = 2,
+                            DisplayOrder = 4,
+                            GroupID = 1,
+                            Name = "Quản trị viên",
+                            Status = true,
+                            Target = "_self"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2589),
+                            DisplayCondition = 1,
+                            DisplayOrder = 5,
+                            GroupID = 1,
+                            Name = "Giới thiệu",
+                            Status = true,
+                            Target = "_self",
+                            URL = "/logout"
                         });
                 });
 
@@ -313,7 +461,7 @@ namespace webtuyensinh.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Post");
+                    b.ToTable("Posts");
 
                     b.HasData(
                         new
@@ -322,7 +470,7 @@ namespace webtuyensinh.Migrations
                             Avartar = "news-avartar.jpg",
                             CategoryId = 2,
                             Content = "<p>Đây là nội dung bài viết</p>",
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(3053),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2310),
                             Description = "......",
                             Title = "Bài viết 1"
                         },
@@ -332,7 +480,7 @@ namespace webtuyensinh.Migrations
                             Avartar = "news-avartar.jpg",
                             CategoryId = 2,
                             Content = "<p>Đây là nội dung bài viết</p>",
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(3058),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2316),
                             Description = "......",
                             Title = "Bài viết 2"
                         },
@@ -342,7 +490,7 @@ namespace webtuyensinh.Migrations
                             Avartar = "news-avartar.jpg",
                             CategoryId = 3,
                             Content = "<p>Đây là nội dung bài viết</p>",
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(3062),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2321),
                             Description = "......",
                             Title = "Bài viết 3"
                         },
@@ -352,7 +500,7 @@ namespace webtuyensinh.Migrations
                             Avartar = "news-avartar.jpg",
                             CategoryId = 3,
                             Content = "<p>Đây là nội dung bài viết</p>",
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(3067),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2325),
                             Description = "......",
                             Title = "Bài viết 4"
                         },
@@ -362,7 +510,7 @@ namespace webtuyensinh.Migrations
                             Avartar = "news-avartar.jpg",
                             CategoryId = 5,
                             Content = "<p>Đây là nội dung bài viết</p>",
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(3071),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2330),
                             Description = "......",
                             Title = "Bài viết 5"
                         },
@@ -372,7 +520,7 @@ namespace webtuyensinh.Migrations
                             Avartar = "news-avartar.jpg",
                             CategoryId = 5,
                             Content = "<p>Đây là nội dung bài viết</p>",
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(3076),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2334),
                             Description = "......",
                             Title = "Bài viết 6"
                         },
@@ -382,7 +530,7 @@ namespace webtuyensinh.Migrations
                             Avartar = "news-avartar.jpg",
                             CategoryId = 9,
                             Content = "<p>Đây là nội dung bài viết</p>",
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(3080),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2338),
                             Description = "......",
                             Title = "Bài viết 7"
                         },
@@ -392,7 +540,7 @@ namespace webtuyensinh.Migrations
                             Avartar = "news-avartar.jpg",
                             CategoryId = 8,
                             Content = "<p>Đây là nội dung bài viết</p>",
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(3085),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2343),
                             Description = "......",
                             Title = "Bài viết 8"
                         },
@@ -402,7 +550,7 @@ namespace webtuyensinh.Migrations
                             Avartar = "news-avartar.jpg",
                             CategoryId = 10,
                             Content = "<p>Đây là nội dung bài viết</p>",
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(3090),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2347),
                             Description = "......",
                             Title = "Bài viết 9"
                         },
@@ -412,7 +560,7 @@ namespace webtuyensinh.Migrations
                             Avartar = "news-avartar.jpg",
                             CategoryId = 1,
                             Content = "<p>Đây là nội dung bài viết</p>",
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(3094),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(2352),
                             Description = "......",
                             Title = "Bài viết 10"
                         });
@@ -446,13 +594,13 @@ namespace webtuyensinh.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(2239),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(1588),
                             Password = "123123",
                             Role = "Admin",
                             UserName = "user11"
@@ -460,7 +608,7 @@ namespace webtuyensinh.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(2265),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(1612),
                             Password = "123123",
                             Role = "User",
                             UserName = "user22"
@@ -468,11 +616,20 @@ namespace webtuyensinh.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2023, 7, 20, 19, 11, 56, 504, DateTimeKind.Local).AddTicks(2269),
+                            CreatedAt = new DateTime(2023, 7, 26, 15, 2, 7, 729, DateTimeKind.Local).AddTicks(1616),
                             Password = "123123",
                             Role = "User",
                             UserName = "user33"
                         });
+                });
+
+            modelBuilder.Entity("webtuyensinh.Models.MenuModel", b =>
+                {
+                    b.HasOne("webtuyensinh.Models.MenuGroupModel", "Group")
+                        .WithMany("Menus")
+                        .HasForeignKey("GroupID");
+
+                    b.Navigation("Group");
                 });
 
             modelBuilder.Entity("webtuyensinh.Models.PostModel", b =>
@@ -489,6 +646,11 @@ namespace webtuyensinh.Migrations
             modelBuilder.Entity("webtuyensinh.Models.CategoryModel", b =>
                 {
                     b.Navigation("Posts");
+                });
+
+            modelBuilder.Entity("webtuyensinh.Models.MenuGroupModel", b =>
+                {
+                    b.Navigation("Menus");
                 });
 #pragma warning restore 612, 618
         }

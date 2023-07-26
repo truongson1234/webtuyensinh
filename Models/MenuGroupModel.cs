@@ -3,15 +3,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace webtuyensinh.Models
 {
-    [Table("Users")]
-    public class UserModel
+    [Table("MenuGroups")]
+    public class MenuGroupModel
     {
-        [Key]
         public int Id { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public string Role { get; set; } = "User";
+        [Required]
+        [MaxLength(250)]
+        public string? Name { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
+        public ICollection<MenuModel> Menus { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace webtuyensinh.Models
 {
-    [Table("Admission")]
+    [Table("Admissions")]
     public class AdmissionModel
     {
         [Key]

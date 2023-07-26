@@ -262,5 +262,149 @@ namespace webtuyensinh.Controllers
 
             return RedirectToAction("CategoriesManager");
         }
+
+
+        // Menu 
+        public IActionResult MenusManager()
+        {
+
+            var menugroups = _context.MenuGroupModel.ToList();
+
+            var menus = _context.MenuModel
+                .Join(_context.MenuGroupModel,
+                m => m.GroupID,
+                mg => mg.Id,
+                (m, mg) => new MenuModel 
+                {
+                    Id = m.Id,
+                    Name = m.Name,
+                    URL = m.URL,
+                    Controller = m.Controller,
+                    Action = m.Action,
+                    DisplayOrder = m.DisplayOrder,
+                    CreatedAt = m.CreatedAt,
+                    UpdatedAt = m.UpdatedAt,
+                    Group = mg,
+                })
+                .ToList();
+
+            var model = new MenuViewModel
+            {
+                Menus = menus,
+                MenuGroups = menugroups,
+            };
+
+            return View(model);
+        }
+        // Menus group
+        public IActionResult MenuGroupCreate()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> MenuGroupCreate(MenuGroupModel menuGroup)
+        {
+            menuGroup.CreatedAt = DateTime.Now;
+            _context.MenuGroupModel.Add(menuGroup);
+            _context.SaveChanges();
+            return RedirectToAction("MenusManager");
+        }
+        public IActionResult MenuGroupEdit(int id)
+        {
+            var mg = _context.MenuGroupModel.Where(mg => mg.Id == id).FirstOrDefault();
+            var model = new MenuViewModel
+            {
+                MenuGroup = mg
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> MenuGroupUpdate(MenuGroupModel menuGroup)
+        {
+            menuGroup.UpdatedAt = DateTime.Now;
+            _context.MenuGroupModel.Update(menuGroup);
+            _context.SaveChanges();
+            return RedirectToAction("MenusManager");
+        }
+        [HttpPost]
+        public async Task<IActionResult> MenuGroupDelete(int mg_id)
+        {
+            var mg = await _context.MenuGroupModel.FirstOrDefaultAsync(c => c.Id == mg_id);
+
+            _context.MenuGroupModel.Remove(mg);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("MenusManager");
+        }
+
+        // Menus group
+        public IActionResult MenuCreate()
+        {
+            var mgs = _context.MenuGroupModel.ToList();
+
+            var model = new MenuViewModel
+            {
+                MenuGroups = mgs
+            };
+
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> MenuCreate(MenuModel menu)
+        {
+            menu.CreatedAt = DateTime.Now;
+            _context.MenuModel.Add(menu);
+            _context.SaveChanges();
+            return RedirectToAction("MenusManager");
+        }
+        public IActionResult MenuEdit(int id)
+        {
+            var menu = _context.MenuModel
+                .Where(m => m.Id == id)
+                .Join(_context.MenuGroupModel,
+                m => m.GroupID,
+                mg => mg.Id,
+                (m, mg) => new MenuModel
+                {
+                    Id = m.Id,
+                    Name = m.Name,
+                    URL = m.URL,
+                    Controller = m.Controller,
+                    Action = m.Action,
+                    DisplayOrder = m.DisplayOrder,
+                    CreatedAt = m.CreatedAt,
+                    UpdatedAt = m.UpdatedAt,
+                    Group = mg,
+                })
+                .FirstOrDefault();
+
+            var mgs = _context.MenuGroupModel.ToList();
+
+            var model = new MenuViewModel
+            {
+                Menu = menu,
+                MenuGroups = mgs
+            };
+
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> MenuUpdate(MenuModel menu)
+        {
+            menu.UpdatedAt = DateTime.Now;
+            _context.MenuModel.Update(menu);
+            _context.SaveChanges();
+            return RedirectToAction("MenusManager");
+        }
+        [HttpPost]
+        public async Task<IActionResult> MenuDelete(int m_id)
+        {
+            var menu = await _context.MenuModel.FirstOrDefaultAsync(c => c.Id == m_id);
+
+            _context.MenuModel.Remove(menu);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("MenusManager");
+        }
     }
 }

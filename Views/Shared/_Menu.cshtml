@@ -1,0 +1,34 @@
+﻿@using webtuyensinh.Models
+@model List<webtuyensinh.Models.MenuModel>
+
+@{
+    bool rule(Enum md)
+    {
+        switch (md)
+        {
+            case Conditions.NotAuthentication:
+                return !User.Identity.IsAuthenticated;
+            case Conditions.Authentication:
+                return User.Identity.IsAuthenticated;
+            case Conditions.RoleAdmin:
+                return User.IsInRole("Admin");
+            case Conditions.Normal:
+                return true;
+            default:
+                return false;
+        }
+            
+    }
+}
+
+<ul class="navbar-nav">
+    @foreach (var m in Model)
+    {
+        if (rule(m.DisplayCondition))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="@(m.URL ?? "/" + m.Controller + "/" + m.Action )">@m.Name</a>
+            </li>
+        }
+    }
+</ul>
