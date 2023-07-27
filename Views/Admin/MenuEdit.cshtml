@@ -1,60 +1,25 @@
 ﻿@model webtuyensinh.ViewModels.MenuViewModel
+
 @{
     Layout = "_LayoutAdmin";
-    ViewData["Title"] = "Sửa menu";
+    ViewData["Title"] = "Sửa nhóm menu";
 }
 
 <div class="container">
-    <div class="row">
-        <h1>Sửa danh mục</h1>
-        <hr />
-    </div>
+    <h1>Sửa nhóm menu</h1>
     <div class="row">
         <div class="col-md-4">
-            @using (Html.BeginForm("MenuUpdate", "Admin", FormMethod.Post, new { @class = "px-3 pt-5 pb-4" }))
+            @using (@Html.BeginForm("MenuUpdate", "Admin", FormMethod.Post, new { @class = "py-5" }))
             {
-                @Html.HiddenFor(model => model.Menu.Id)
-                <div class="mb-3 w-100">
-                    @Html.TextBoxFor(model => model.Menu.Name, new { @class = "form-control", placeholder = "Tên*" })
-                    @Html.ValidationMessageFor(model => model.Menu.Name)
+                @Html.HiddenFor(model => model.MenuGroup.Id)
+                <div class="mb-3">
+                    @Html.TextBoxFor(model => model.MenuGroup.Name, new { @class = "form-control", placeholder = "Tên nhóm" })
+                    @Html.ValidationMessageFor(model => model.MenuGroup.Name)
                 </div>
 
-                <div class="mb-3 w-100">
-                    @Html.TextBoxFor(model => model.Menu.URL, new { @class = "form-control", placeholder = "URL" })
-                    @Html.ValidationMessageFor(model => model.Menu.URL)
+                <div class="form-group">
+                    <input type="submit" value="Update" class="btn btn-primary" />
                 </div>
-
-                <div class="mb-3 w-100">
-                    @Html.TextBoxFor(model => model.Menu.Controller, new { @class = "form-control", placeholder = "Controler" })
-                    @Html.ValidationMessageFor(model => model.Menu.Controller)
-                </div>
-
-                <div class="mb-3 w-100">
-                    @Html.TextBoxFor(model => model.Menu.Action, new { @class = "form-control", placeholder = "Action" })
-                    @Html.ValidationMessageFor(model => model.Menu.Action)
-                </div>
-
-                <div class="mb-3 w-100">
-                    @Html.TextBoxFor(model => model.Menu.DisplayOrder, new { @class = "form-control", placeholder = "Thứ tự" })
-                    @Html.ValidationMessageFor(model => model.Menu.DisplayOrder)
-                </div>
-
-                <div class="mb-3 w-100">
-                    <select class="form-control" asp-for="Menu.DisplayCondition" asp-items="Html.GetEnumSelectList<Conditions>()"></select>
-                    @Html.ValidationMessageFor(model => model.Menu.DisplayCondition)
-                </div>
-
-                <div class="mb-3 w-100">
-                    <select class="form-control" asp-for="Menu.GroupID">
-                        @foreach (var mg in Model.MenuGroups)
-                        {
-                            <option value="@mg.Id" selected="@(mg.Id == Model.Menu.GroupID ? true : false)">@mg.Name</option>
-                        }
-                    </select>
-                    @Html.ValidationMessageFor(model => model.Menu.GroupID)
-                </div>
-
-                <button type="submit" class="btn btn-submit btn-primary">XÁC NHẬN</button>
             }
         </div>
     </div>

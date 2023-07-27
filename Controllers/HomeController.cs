@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.Ajax.Utilities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections;
 using System.Diagnostics;
@@ -10,16 +11,35 @@ namespace webtuyensinh.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly WebtuyensinhDbContext _context;
         private readonly HomeService _service;
 
-        public HomeController(HomeService service)
+        public HomeController(WebtuyensinhDbContext context, HomeService service)
         {
+            _context = context;
             _service = service;
         }
 
         public IActionResult Index()
         {
-            var menu = _service.GetMenu(1);
+            var menu = _context.MenuItemModel
+                .Where(m => m.GroupID == 1)
+                .Where(m => m.ParentID == null)
+                .Select(m => new MenuItemModel
+                {
+                    Id = m.Id, GroupID = m.GroupID, ParentID = m.ParentID, 
+                    Name = m.Name,
+                    URL = m.URL, Controller = m.Controller, Action = m.Action,
+                    DisplayCondition = m.DisplayCondition, DisplayOrder = m.DisplayOrder,
+                    Target = m.Target, Status = m.Status,
+                    Child = _context.MenuItemModel
+                    .Where(m2 => m2.ParentID == m.Id)
+                    .OrderBy(m2 => m2.DisplayOrder)
+                    .ToList() 
+                })
+                .OrderBy(m => m.DisplayOrder)
+                .ToList();
+
             //Lấy ra 2 bản ghi mới nhất
             var article_main = _service.GetPostsMain();
 

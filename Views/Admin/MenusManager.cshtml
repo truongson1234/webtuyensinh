@@ -12,7 +12,7 @@
                 <div class="card-header pb-0">
                     <div class="mb-3">
                         <h6>Nhóm</h6>
-                        <a asp-action="MenuGroupCreate" class="text-sm font-weight-bolder opacity-7"><i class="fas fa-plus-square"></i> Thêm nhóm</a>
+                        <a asp-action="MenuCreate" class="text-sm font-weight-bolder opacity-7"><i class="fas fa-plus-square"></i> Thêm nhóm</a>
                     </div>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
@@ -46,8 +46,8 @@
                                                 <span class="text-secondary text-xs font-weight-bold">@item.CreatedAt</span>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <form asp-action="MenuGroupDelete" method="post">
-                                                    <a asp-action="MenuGroupEdit" asp-route-id="@item.Id" class="text-secondary font-weight-bold text-xs">
+                                                <form asp-action="MenuDelete" method="post">
+                                                    <a asp-action="MenuEdit" asp-route-id="@item.Id" class="text-secondary font-weight-bold text-xs">
                                                         Sửa
                                                     </a>
                                                     <span> | </span>
@@ -74,7 +74,7 @@
                 <div class="card-header pb-0">
                     <div class="mb-3">
                         <h6>Menus</h6>
-                        <a asp-action="MenuCreate" class="text-sm font-weight-bolder opacity-7"><i class="fas fa-plus-square"></i> Thêm menu</a>
+                        <a asp-action="MenuItemCreate" class="text-sm font-weight-bolder opacity-7"><i class="fas fa-plus-square"></i> Thêm menu</a>
                     </div>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
@@ -113,8 +113,8 @@
                                                 <span class="text-secondary text-xs font-weight-bold">@(item.UpdatedAt ?? item.CreatedAt ?? null)</span>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <form asp-action="MenuDelete" method="post">
-                                                    <a asp-action="MenuEdit" asp-route-id="@item.Id" class="text-secondary font-weight-bold text-xs">
+                                                <form asp-action="MenuItemDelete" method="post">
+                                                    <a asp-action="MenuItemEdit" asp-route-id="@item.Id" class="text-secondary font-weight-bold text-xs">
                                                         Sửa
                                                     </a>
                                                     <span> | </span>

@@ -2,58 +2,23 @@
 
 @{
     Layout = "_LayoutAdmin";
-    ViewData["Title"] = "Tạo menu";
+    ViewData["Title"] = "Tạo nhóm menu";
 }
+
 <div class="container">
-    <h1>Tạo MENU</h1>
+    <h1>Tạo nhóm menu</h1>
     <div class="row">
         <div class="col-md-4">
             @using (@Html.BeginForm("MenuCreate", "Admin", FormMethod.Post, new { @class = "py-5" }))
             {
-                <div class="mb-3 w-100">
-                    @Html.TextBoxFor(model => model.Menu.Name, new { @class = "form-control", placeholder = "Tên*" })
-                    @Html.ValidationMessageFor(model => model.Menu.Name)
+                <div class="mb-3">
+                    @Html.TextBoxFor(model => model.MenuGroup.Name, new { @class = "form-control", placeholder = "Tên nhóm" })
+                    @Html.ValidationMessageFor(model => model.MenuGroup.Name)
                 </div>
 
-                <div class="mb-3 w-100">
-                    @Html.TextBoxFor(model => model.Menu.URL, new { @class = "form-control", placeholder = "URL" })
-                    @Html.ValidationMessageFor(model => model.Menu.URL)
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
                 </div>
-
-                <div class="mb-3 w-100">
-                    @Html.TextBoxFor(model => model.Menu.Controller, new { @class = "form-control", placeholder = "Controller" })
-                    @Html.ValidationMessageFor(model => model.Menu.Controller)
-                </div>
-
-                <div class="mb-3 w-100">
-                    @Html.TextBoxFor(model => model.Menu.Action, new { @class = "form-control", placeholder = "Action" })
-                    @Html.ValidationMessageFor(model => model.Menu.Action)
-                </div>
-
-                <div class="mb-3 w-100">
-                    @Html.TextBoxFor(model => model.Menu.DisplayOrder, new { @class = "form-control", placeholder = "Thứ tự" })
-                    @Html.ValidationMessageFor(model => model.Menu.DisplayOrder)
-                </div>
-
-                <div class="mb-3 w-100">
-                    <select class="form-control" asp-for="Menu.DisplayCondition" asp-items="Html.GetEnumSelectList<Conditions>()">
-                        <option selected>-- Hiển thị khi --</option>
-                    </select>
-                    @Html.ValidationMessageFor(model => model.Menu.DisplayCondition)
-                </div>
-
-                <div class="mb-3 w-100">
-                    <select class="form-control" asp-for="Menu.GroupID">
-                        <option selected>-- Chọn nhóm --</option>
-                        @foreach (var mg in Model.MenuGroups)
-                        {
-                            <option value="@mg.Id">@mg.Name</option>
-                        }
-                    </select>
-                    @Html.ValidationMessageFor(model => model.Menu.GroupID)
-                </div>
-
-                <button type="submit" class="btn btn-submit btn-primary">TẠO</button>
             }
         </div>
     </div>

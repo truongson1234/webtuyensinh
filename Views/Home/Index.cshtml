@@ -675,9 +675,11 @@
         </div>
     </div>
 </div>
-
 @section Scripts
 {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
     <script>
         $('.home-enrollment__carousel.owl-carousel').owlCarousel({
             loop:true,
