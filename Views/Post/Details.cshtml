@@ -23,6 +23,12 @@
                         }
                     </div>
                 </div>
+                <div>
+                    @foreach(var r_post in Model.Posts)
+                    {
+                        <a href="/Post/Details/@r_post.Id">@r_post.Title</a>
+                    }
+                </div>
 
                 @*<div class="p-4">
                     <h4 class="fst-italic">Menu</h4>

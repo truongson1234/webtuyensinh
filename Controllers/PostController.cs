@@ -1,6 +1,7 @@
 ﻿using Microsoft.Ajax.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NuGet.Protocol;
 using webtuyensinh.Models;
 using webtuyensinh.ViewModels;
@@ -29,6 +30,31 @@ namespace webtuyensinh.Controllers
             };
             return View(model);
         }
+        [HttpGet]
+        [Route("/categories/{id}")]
+        public IActionResult PostsForCategory(int id)
+        {
+            var cate = _context.CategoryModel
+                .Where(c =>  c.Id == id)
+                .Select(c => new CategoryModel
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    Description = c.Description,
+                    CreatedAt = c.CreatedAt,
+                    UpdatedAt = c.UpdatedAt,
+                    Posts = _context.PostModel.Where(p => p.CategoryId == id).ToList()
+                })
+                .First();
+            var categories = _context.CategoryModel.Where(c => c.Name.Contains(cate.Name)).ToList();
+
+            var model = new CategoryViewModel
+            {
+                Category = cate,
+                Categories = categories,
+            };
+            return View(model);
+        }
         public IActionResult Details(int id)
         {
             var post = _context.PostModel
@@ -52,9 +78,15 @@ namespace webtuyensinh.Controllers
                 .FirstOrDefault();
 
             var tags = _context.PostTagModel.Where(pt => pt.PostID == id).Select(pt => pt.Tag).ToList();
+            var relatedPosts = _context.PostModel
+                .Where(p => p.CategoryId == post.CategoryId || p.Title.Contains(post.Title)  && p.Id != post.Id)
+                .Take(3)
+                .ToList();
+
             var model = new PostViewModel
             {
                 Post = post,
+                Posts = relatedPosts,
                 Tags = tags,
             };
 

@@ -1,0 +1,57 @@
+﻿@model webtuyensinh.ViewModels.CategoryViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@section Styles {
+    <link href="~/assets/css/pages/post.min.css" rel="stylesheet" />
+}
+
+<div class="posts-cate container py-5">
+    <div class="row g-5">
+        <div class="col-md-4">
+            <div class="position-sticky posts-cate__bar" style="top: 2rem;">
+                <div class="p-4 mb-3 rounded posts-cate__info">
+                    <h5 class="mb-3 posts-cate__tt">Danh mục liên quan:</h5>
+                    <div class="posts-cate__tags d-flex flex-wrap">
+                        @foreach (var cate in Model.Categories)
+                        {
+                            <a href="/tags/@cate.Id" class="posts-cate__tags-item">@cate.Name</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            @foreach (var post in Model.Category.Posts)
+            {
+                <div class="posts-cate__main p-3 mb-3">
+                    <h5 class="pb-2 mb-2 posts-cate__title fst-italic border-bottom">
+                        @post.Title
+                    </h5>
+                    <article class="blog-post">
+                        @*<h2 class="blog-post-title"></h2>*@
+                        @if (post.CreatedAt != null)
+                        {
+                            <p class="blog-post-meta">Đã đăng vào: @post.CreatedAt.Value.ToString("MMMM, dd, yyyy")</p>
+                        }
+                        @if (post.UpdatedAt != null)
+                        {
+                            <p class="blog-post-meta">Đã sửa vào: @post.UpdatedAt.Value.ToString("MMMM, dd, yyyy")</p>
+                        }
+                        <a href="/Post/Details/@post.Id" class="blog-post-des">@Html.Raw(post.Content)</a>
+                    </article>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $(".p-main").addClass("dark")
+        })
+    </script>
+}
