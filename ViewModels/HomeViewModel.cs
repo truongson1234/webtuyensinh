@@ -1,4 +1,5 @@
-﻿using webtuyensinh.Models;
+﻿using System.Security.Claims;
+using webtuyensinh.Models;
 
 namespace webtuyensinh.ViewModels
 {
@@ -12,5 +13,6 @@ namespace webtuyensinh.ViewModels
         public IEnumerable<CategoryModel> Categories { get; set; }
         public IEnumerable<CategoryModel> CateNation { get; set; }
         public AdmissionModel AdmissionModel { get; set; }
+        
     }
 }

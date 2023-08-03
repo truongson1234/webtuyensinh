@@ -74,5 +74,6 @@ public class WebtuyensinhDbContext : DbContext
     public DbSet<PostModel> PostModel { get; set; }
     public DbSet<MenuModel> MenuModel { get; set; }
     public DbSet<MenuItemModel> MenuItemModel { get; set; }
-
+    public DbSet<TagModel> TagModel { get; set; }
+    public DbSet<PostTagModel> PostTagModel { get; set; }
 }

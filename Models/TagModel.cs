@@ -3,20 +3,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace webtuyensinh.Models
 {
-    [Table("Posts")]
-    public class PostModel
+    [Table("Tags")]
+    public class TagModel
     {
         [Key]
         public int Id { get; set; }
-        public int CategoryId { get; set; }
-        public string Title { get; set; }
-        public string Avartar { get; set; }
-        public string Description { get; set; }
-        public string Content { get; set; }
+        [Required]
+        [MaxLength(250)]
+        public string Name { get; set; }
+        public string? Slug { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
-        public CategoryModel Category { get; set; }
         public ICollection<PostTagModel> PostTags { get; set; }
-
     }
 }

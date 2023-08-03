@@ -14,5 +14,13 @@
   {
     "outputFile": "wwwroot/assets/css/pages/home.css",
     "inputFile": "wwwroot/assets/css/pages/home.scss"
+  },
+  {
+    "outputFile": "wwwroot/assets/css/pages/post.css",
+    "inputFile": "wwwroot/assets/css/pages/post.scss"
+  },
+  {
+    "outputFile": "wwwroot/assets/css/layout.css",
+    "inputFile": "wwwroot/assets/css/layout.scss"
   }
 ]

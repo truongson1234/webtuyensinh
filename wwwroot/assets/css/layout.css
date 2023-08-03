@@ -32,6 +32,10 @@ header nav.navbar .navbar-btnlienhe {
   background: var(--2, #F26725);
 }
 
+.p-main.dark {
+  background-color: #f1f2f6;
+}
+
 footer .bottombar {
   font-weight: 400;
   color: var(--ffffff, #FFF);

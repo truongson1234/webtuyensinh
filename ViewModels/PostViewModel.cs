@@ -6,6 +6,7 @@ namespace webtuyensinh.ViewModels
     {
         public PostModel Post { get; set; }
         public CategoryModel Category { get; set; }
+        public List<TagModel> Tags { get; set; }
         public IEnumerable<PostModel> Posts { get; set; }
         public IEnumerable<CategoryModel> Categories { get; set; }
     }

@@ -1,11 +1,12 @@
-﻿using elFinder.NetCore;
+﻿using Azure;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
-using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
 using OfficeOpenXml;
-using System.Collections.Generic;
+using System.Linq;
 using webtuyensinh.Models;
 using webtuyensinh.ViewModels;
 using X.PagedList;
@@ -118,34 +119,55 @@ namespace webtuyensinh.Controllers
 
             return View(pagedData);
         }
+        [HttpGet]
+        [Route("/api/tags")]
+        public JsonResult TagsAutoComplete()
+        {
+            var tags = _context.TagModel.ToList();
+            return Json(tags);
+        }
         public IActionResult PostCreate()
         {
             var categories = _context.CategoryModel.Select(c => c);
-            var model = new PostViewModel
+            var model = new PostCreateViewModel
             {
-                Categories = categories
+                Categories = categories,
             };
             return View(model);
         }
         [HttpPost]
-        public async Task<IActionResult> PostCreate(IFormFile postedFile, PostModel post)
+        public async Task<IActionResult> PostCreate(IFormFile postedFile, PostCreateViewModel postCreate)
         {
             if (postedFile == null || postedFile.Length == 0)
-                return BadRequest("No file selected for upload...");
+            {
+                return BadRequest("Không tìm thấy ảnh đại diện tải lên...");
+            }
 
             string fileName = Path.GetFileName(postedFile.FileName);
-            var uploadDirectory = "Uploads";
-            var filePath = Path.Combine(uploadDirectory, fileName);
+            var filePath = Path.Combine("Uploads", fileName);
 
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
                 await postedFile.CopyToAsync(stream);
             }
 
-            post.Avartar = fileName;
-            post.CreatedAt = DateTime.Now;
+            var post = new PostModel
+            {
+                Id = postCreate.Id,
+                CategoryId = postCreate.CategoryId,
+                Title = postCreate.Title,
+                Avartar = fileName,
+                Description = postCreate.Description,
+                Content = postCreate.Content,
+                CreatedAt = DateTime.Now,
+            };
+
             _context.PostModel.Add(post);
             _context.SaveChanges();
+
+            if(postCreate.Tags != null)
+                PostTagsToDB(postCreate.Tags, post.Id);
+
             return RedirectToAction("PostsManager");
         }
         public IActionResult PostEdit(int id) 
@@ -169,35 +191,59 @@ namespace webtuyensinh.Controllers
                         )
                     .Where(p => p.Id == id)
                     .FirstOrDefault();
+            string tags = JsonConvert.SerializeObject(_context.PostTagModel
+                .Where(t => t.PostID == id)
+                .Select(pt => new { 
+                    value = pt.Tag.Name, 
+                    id = pt.Tag.Id })
+                .ToList());
 
-            var model = new PostViewModel
+            var model = new PostCreateViewModel
             {
-                Post = post,
+                Id = post.Id,
+                CategoryId = post.CategoryId,
+                Title = post.Title,
+                Avartar = post.Avartar,
+                Content = post.Content,
+                Description = post.Description,
+                Tags = tags,
                 Categories = cate
             };
 
             return View(model);
         }
         [HttpPost]
-        public async Task<IActionResult> PostUpdate (IFormFile postedFile, PostModel post)
+        public async Task<IActionResult> PostUpdate (IFormFile postedFile, PostCreateViewModel postCreate)
         {
+            var post = new PostModel
+            {
+                Id = postCreate.Id,
+                CategoryId = postCreate.CategoryId,
+                Title = postCreate.Title,
+                Description = postCreate.Description,
+                Content = postCreate.Content,
+                UpdatedAt = DateTime.Now,
+            };
+
             if (postedFile != null)
             {
                 string fileName = Path.GetFileName(postedFile.FileName);
-                var uploadDirectory = "Uploads";
-                var filePath = Path.Combine(uploadDirectory, fileName);
+                var filePath = Path.Combine("Uploads", fileName);
 
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     await postedFile.CopyToAsync(stream);
                 }
-
                 post.Avartar = fileName;
+            } else {
+                post.Avartar = postCreate.Avartar;
             }
 
-            post.UpdatedAt = DateTime.Now;
             _context.PostModel.Update(post);
             _context.SaveChanges();
+
+            if (postCreate.Tags != null)
+                PostTagsToDB(postCreate.Tags, post.Id);
             return RedirectToAction("PostsManager");
         }
         [HttpPost]
@@ -372,10 +418,13 @@ namespace webtuyensinh.Controllers
                 (m, mg) => new MenuItemModel
                 {
                     Id = m.Id,
+                    ParentID = m.ParentID,
+                    GroupID = m.GroupID,
                     Name = m.Name,
                     URL = m.URL,
                     Controller = m.Controller,
                     Action = m.Action,
+                    DisplayCondition = m.DisplayCondition,
                     DisplayOrder = m.DisplayOrder,
                     CreatedAt = m.CreatedAt,
                     UpdatedAt = m.UpdatedAt,
@@ -417,5 +466,28 @@ namespace webtuyensinh.Controllers
 
             return RedirectToAction("MenusManager");
         }
+
+        public void PostTagsToDB(string tags, int post_id)
+        {
+            var tagStrings = tags.Split(',');
+
+            _context.PostTagModel.RemoveRange(_context.PostTagModel.Where(pt => pt.PostID == post_id));
+
+            foreach (var tagStr in tagStrings)
+            {
+                if (!int.TryParse(tagStr.Trim(), out int tagId))
+                {
+                    var tag = new TagModel { Name = tagStr.Trim() };
+                    _context.TagModel.Add(tag);
+                    _context.SaveChanges();
+
+                    tagId = tag.Id;
+                }
+                var postTags = new PostTagModel { PostID = post_id, TagID = tagId };
+                _context.PostTagModel.Add(postTags);
+            }
+            _context.SaveChanges();
+        }
     }
+
 }

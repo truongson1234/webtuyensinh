@@ -21,7 +21,6 @@ builder.Services.AddAuthentication(
         });
 
 builder.Services.AddScoped<HomeService>();
-builder.Services.AddScoped<IMenuService, MenuService>();
 
 var app = builder.Build();
 

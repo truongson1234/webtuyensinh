@@ -1,4 +1,4 @@
-﻿@model webtuyensinh.ViewModels.PostViewModel
+﻿@model webtuyensinh.ViewModels.PostCreateViewModel
 
 @{
     Layout = "_LayoutAdmin";
@@ -50,13 +50,13 @@
         <div class="col-md-4">
             @using (Html.BeginForm("PostUpdate", "Admin", FormMethod.Post, new { @class = "px-3 pt-5 pb-4", enctype = "multipart/form-data" }))
             {
-                @Html.HiddenFor(model => model.Post.Id)
+                @Html.HiddenFor(model => model.Id)
 
                 <div class="mb-3 w-100">
-                    <select class="form-control" asp-for="Post.CategoryId">
+                    <select class="form-control" asp-for="CategoryId">
                         @foreach(var cate in Model.Categories)
                         {
-                            @if (cate.Id == Model.Post.CategoryId)
+                            @if (cate.Id == Model.CategoryId)
                             {
                                 <option value="@cate.Id" selected>@cate.Name</option>
                             } else
@@ -66,32 +66,42 @@
                         }
                     }
                     </select>
-                    @Html.ValidationMessageFor(model => model.Post.CategoryId)
+                    @Html.ValidationMessageFor(model => model.CategoryId)
                 </div>
 
                 <div class="mb-3 w-100">
-                    @Html.TextBoxFor(model => model.Post.Title, new { @class = "form-control", placeholder = "Tiêu đề*" })
-                    @Html.ValidationMessageFor(model => model.Post.Title)
+                    @Html.TextBoxFor(model => model.Title, new { @class = "form-control", placeholder = "Tiêu đề*" })
+                    @Html.ValidationMessageFor(model => model.Title)
                 </div>
 
                 <div class="mb-3">
                     <div class="postedit-preview">
                         <label for="file-input_vartar">Upload Image</label>
                         <input type="file" name="postedFile" id="file-input_vartar" class="form-control" />
-                        @Html.HiddenFor(model => model.Post.Avartar)
-                        <img id="img-preview" accept="image/*" src="@Url.Content("~/contents/" + @Model.Post.Avartar)">
+                        @Html.HiddenFor(model => model.Avartar)
+                        <img id="img-preview" accept="image/*" src="@Url.Content("~/contents/" + @Model.Avartar)">
                     </div>
-                    @Html.ValidationMessageFor(model => model.Post.Avartar)
+                    @Html.ValidationMessageFor(model => model.Avartar)
+                </div>
+
+                <div class="mb-3">
+                    @Html.HiddenFor(model => model.Tags)
+                    <input name='post-tagsinput'
+                           id="PostTags"
+                           class='some_class_name'
+                           placeholder='write some tags'
+                           value='@Model.Tags'
+                           data-blacklist='PHP'>
                 </div>
 
                 <div class="mb-3 w-100">
-                    @Html.TextBoxFor(model => model.Post.Description, new { @class = "form-control", placeholder = "Chuyên ngành hay đất nước bạn muốn đến?" })
-                    @Html.ValidationMessageFor(model => model.Post.Description)
+                    @Html.TextBoxFor(model => model.Description, new { @class = "form-control", placeholder = "Chuyên ngành hay đất nước bạn muốn đến?" })
+                    @Html.ValidationMessageFor(model => model.Description)
                 </div>
 
                 <div class="mb-3 w-100">
-                    @Html.TextAreaFor(model => model.Post.Content)
-                    @Html.ValidationMessageFor(model => model.Post.Content)
+                    @Html.TextAreaFor(model => model.Content)
+                    @Html.ValidationMessageFor(model => model.Content)
                 </div>
 
                 <button type="submit" class="btn btn-submit btn-primary">XÁC NHẬN</button>
@@ -108,8 +118,8 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
         var summernote = new webtuyensinh.Models.Sommnernote("#Post_Content");
     }
-
     <partial name="_Summernote" model="summernote" />
+    <script src="~/assets/admin/js/tagsinput.js"></script>
 
     <script>
         const input = document.getElementById('file-input_vartar');
@@ -121,6 +131,6 @@
                 image.src = src;
             }
         });
-    </script>
 
+    </script>
 }

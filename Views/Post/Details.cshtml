@@ -1,48 +1,30 @@
 ﻿@model webtuyensinh.ViewModels.PostViewModel
 
 @{
-    
     ViewData["Title"] = "Details";
 }
 
-<div class="container py-5">
+@section Styles {
+    <link href="~/assets/css/pages/post.min.css" rel="stylesheet" />
+}
+
+<div class="post-details container py-5">
     <div class="row g-5">
-        <div class="col-md-8">
-            <h3 class="pb-4 mb-4 fst-italic border-bottom">
-                @Html.DisplayFor(model => model.Post.Category.Name)
-            </h3>
-
-            <article class="blog-post">
-                <h2 class="blog-post-title">@Html.DisplayFor(model => model.Post.Title)</h2>
-                @if (Model.Post.CreatedAt != null)
-                {
-                    <p class="blog-post-meta">Đã đăng vào: @Model.Post.CreatedAt.Value.ToString("MMMM, dd, yyyy")</p>
-                }
-                @if (Model.Post.UpdatedAt != null)
-                {
-                    <p class="blog-post-meta">Đã sửa vào: @Model.Post.UpdatedAt.Value.ToString("MMMM, dd, yyyy")</p>
-                }
-                <p>@Html.DisplayFor(model => model.Post.Description)</p>
-                <hr>
-                <p>@Html.Raw(Model.Post.Content)</p>
-            </article>
-            @*<ul class="d-flex align-items-center ul-reset">
-                <li class="mr-3">Chia sẻ:</li>
-                <li><button class="facebook" onclick="window.open('https://www.facebook.com/sharer.php?u='+encodeURIComponent(location.href)+'&amp;t='+encodeURIComponent(document.title));return false"><i class="fab fa-facebook-f"></i></button></li>
-                <li><button class="instagram" onclick="window.open('https://www.instagram.com/?url='+encodeURIComponent(location.href)+'&amp;t='+encodeURIComponent(document.title));return false"><i class="fab fa-instagram"></i></button></li>
-                <li><button class="twitter" onclick="window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(location.href)+'&amp;text='+encodeURIComponent(document.title));return false"><i class="fab fa-twitter"></i></button></li>
-                <li><button class="linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(location.href)+'&amp;t='+encodeURIComponent(document.title));return false"><i class="fab fa-linkedin-in"></i></button></li>
-            </ul>*@
-        </div>
-
         <div class="col-md-4">
-            <div class="position-sticky" style="top: 2rem;">
-                <div class="p-4 mb-3 bg-light rounded">
-                    <h4 class="fst-italic">About</h4>
-                    <p class="mb-0">Customize this section to tell your visitors a little bit about your publication, writers, content, or something else entirely. Totally up to you.</p>
+            <div class="position-sticky post-details__bar" style="top: 2rem;">
+                <div class="p-4 mb-3 rounded post-details__info">
+                    <h3 class="fst-italic post-details__cate">@Html.DisplayFor(model => model.Post.Category.Name)</h3>
+                    <p class="mb-3 post-details__des">@Html.DisplayFor(model => model.Post.Description)</p>
+                    <h5 class="mb-3 post-details__tt">Từ khóa:</h5>
+                    <div class="post-details__tags d-flex flex-wrap">
+                        @foreach (var tag in Model.Tags)
+                        {
+                            <a href="/tags/@tag.Name" class="post-details__tags-item">@tag.Name</a>
+                        }
+                    </div>
                 </div>
 
-                <div class="p-4">
+                @*<div class="p-4">
                     <h4 class="fst-italic">Menu</h4>
                     <ul class="list-unstyled ps-0">
                         <li class="mb-1">
@@ -101,17 +83,33 @@
                             </div>
                         </li>
                     </ul>
-                </div>
-
-                <div class="p-4">
-                    <h4 class="fst-italic">Elsewhere</h4>
-                    <ol class="list-unstyled">
-                        <li><a href="#">GitHub</a></li>
-                        <li><a href="#">Twitter</a></li>
-                        <li><a href="#">Facebook</a></li>
-                    </ol>
-                </div>
+                </div>*@
             </div>
+        </div>
+        <div class="col-md-8 py-4 post-details__main">
+            <h3 class="pb-4 mb-4 post-details__title fst-italic border-bottom">
+                @Html.DisplayFor(model => model.Post.Title)
+            </h3>
+            <article class="blog-post">
+                @*<h2 class="blog-post-title"></h2>*@
+                @if (Model.Post.CreatedAt != null)
+                {
+                    <p class="blog-post-meta">Đã đăng vào: @Model.Post.CreatedAt.Value.ToString("MMMM, dd, yyyy")</p>
+                }
+                @if (Model.Post.UpdatedAt != null)
+                {
+                    <p class="blog-post-meta">Đã sửa vào: @Model.Post.UpdatedAt.Value.ToString("MMMM, dd, yyyy")</p>
+                }
+                <p>@Html.Raw(Model.Post.Content)</p>
+            </article>
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $(".p-main").addClass("dark")
+        })
+    </script>
+}

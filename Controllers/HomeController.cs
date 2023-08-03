@@ -22,20 +22,34 @@ namespace webtuyensinh.Controllers
 
         public IActionResult Index()
         {
-            var menu = _context.MenuItemModel
+
+            var qmenu = _context.MenuItemModel
                 .Where(m => m.GroupID == 1)
-                .Where(m => m.ParentID == null)
-                .Select(m => new MenuItemModel
+                .Where(m => m.ParentID == null);
+            //if (!User.Identity.IsAuthenticated)
+            //    qmenu.Where(m => m.DisplayCondition == Conditions.NotAuthentication || m.DisplayCondition == Conditions.Normal);
+            //if (User.Identity.IsAuthenticated)
+            //    qmenu.Where(m => m.DisplayCondition == Conditions.Authentication || m.DisplayCondition == Conditions.Normal);
+            //if (User.IsInRole("Admin"))
+            //    qmenu.Where(m => m.DisplayCondition == Conditions.RoleAdmin || m.DisplayCondition == Conditions.NotAuthentication || m.DisplayCondition == Conditions.Normal);
+
+            var menu = qmenu.Select(m => new MenuItemModel
                 {
-                    Id = m.Id, GroupID = m.GroupID, ParentID = m.ParentID, 
-                    Name = m.Name,
-                    URL = m.URL, Controller = m.Controller, Action = m.Action,
-                    DisplayCondition = m.DisplayCondition, DisplayOrder = m.DisplayOrder,
-                    Target = m.Target, Status = m.Status,
+                    Id = m.Id,
+                    GroupID = m.GroupID,
+                    ParentID = m.ParentID,
+                    Name = m.Name,                 
+                    URL = m.URL,
+                    Controller = m.Controller,
+                    Action = m.Action,
+                    DisplayCondition = m.DisplayCondition,
+                    DisplayOrder = m.DisplayOrder,
+                    Target = m.Target,
+                    Status = m.Status,
                     Child = _context.MenuItemModel
-                    .Where(m2 => m2.ParentID == m.Id)
-                    .OrderBy(m2 => m2.DisplayOrder)
-                    .ToList() 
+                        .Where(m2 => m2.ParentID == m.Id)
+                        .OrderBy(m2 => m2.DisplayOrder)
+                        .ToList()
                 })
                 .OrderBy(m => m.DisplayOrder)
                 .ToList();
@@ -81,6 +95,7 @@ namespace webtuyensinh.Controllers
         [Authorize]
         public IActionResult Privacy()
         {
+            
             return View();
         }
     }

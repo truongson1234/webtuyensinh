@@ -1,0 +1,50 @@
+﻿@using webtuyensinh.Models
+@model List<webtuyensinh.Models.MenuItemModel>
+
+@{
+    bool rule(Enum md)
+    {
+        switch (md)
+        {
+            case Conditions.NotAuthentication:
+                return !User.Identity.IsAuthenticated;
+            case Conditions.Authentication:
+                return User.Identity.IsAuthenticated;
+            case Conditions.RoleAdmin:
+                return User.IsInRole("Admin");
+            case Conditions.Normal:
+                return true;
+            default:
+                return false;
+        }
+    }
+}
+
+<ul class="navbar-nav">
+    @foreach (var m in Model)
+    {
+        <li class="nav-item @(m.Child.Count() <= 0 ? "" : "dropdown")">
+            @if (m.Child.Count() <= 0)
+            {
+                if (rule(m.DisplayCondition))
+                {
+                    <a class="nav-link text-dark" href="@(m.URL ?? "/" + m.Controller + "/" + m.Action)">@m.Name</a>
+                }
+            } else
+            {
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    @m.Name
+                </a>
+                <ul class="dropdown-menu">
+                    @foreach (var mchild in m.Child)
+                    {
+                        if (rule(mchild.DisplayCondition))
+                        {
+                            <li><a class="dropdown-item" href="@(mchild.URL ?? "/" + mchild.Controller + "/" + mchild.Action)">@mchild.Name</a></li>
+                        }
+                    }
+                </ul>
+            }
+        </li>
+    }
+</ul>

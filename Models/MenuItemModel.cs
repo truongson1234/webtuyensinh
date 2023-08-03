@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Security.Claims;
 
 namespace webtuyensinh.Models
 {
@@ -32,6 +33,7 @@ namespace webtuyensinh.Models
         [NotMapped]
         public ICollection<MenuItemModel> Child { get; set; } = new List<MenuItemModel>();
     }
+    
     public enum Conditions
     {
         [Display(Name = "Bình thường")]
@@ -43,4 +45,5 @@ namespace webtuyensinh.Models
         [Display(Name = "Vai trò 'Quản trị viên'")]
         RoleAdmin = 3
     }
+
 }

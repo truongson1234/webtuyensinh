@@ -46,6 +46,7 @@
 
                 <div class="mb-3 w-100">
                     <select class="form-control" asp-for="Menu.ParentID">
+                        <option>--- Null ---</option>
                         @foreach (var pm in Model.ParentMenus)
                         {
                             <option value="@pm.Id" selected="@(@pm.Id == Model.Menu.ParentID ? true : false)">@pm.Name</option>

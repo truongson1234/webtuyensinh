@@ -54,7 +54,6 @@
     <None Include="wwwroot\assets\admin\js\plugins\perfect-scrollbar.min.js" />
     <None Include="wwwroot\assets\admin\js\plugins\smooth-scrollbar.min.js" />
     <None Include="wwwroot\assets\admin\js\soft-ui-dashboard.js" />
-    <None Include="wwwroot\assets\admin\js\soft-ui-dashboard.js.map" />
     <None Include="wwwroot\assets\admin\js\soft-ui-dashboard.min.js" />
     <None Include="wwwroot\assets\lib\summernote\font\summernote.woff2" />
     <None Include="wwwroot\assets\lib\summernote\lang\summernote-ar-AR.js" />

@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.Ajax.Utilities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Protocol;
 using webtuyensinh.Models;
 using webtuyensinh.ViewModels;
 
@@ -12,6 +14,13 @@ namespace webtuyensinh.Controllers
         public PostController(WebtuyensinhDbContext context)
         {
             _context = context;
+        }
+        [HttpGet]
+        [Route("/tags/{name}")]
+        public IActionResult PostsForTag(string name)
+        {
+            var posts = _context.PostModel.Where(t => t.PostTags.Any(pt => pt.Tag.Name.Contains(name))).ToList();
+            return Json(posts);
         }
         public IActionResult Details(int id)
         {
@@ -35,9 +44,11 @@ namespace webtuyensinh.Controllers
                 .Where(p => p.Id == id)
                 .FirstOrDefault();
 
+            var tags = _context.PostTagModel.Where(pt => pt.PostID == id).Select(pt => pt.Tag).ToList();
             var model = new PostViewModel
             {
-                Post = post
+                Post = post,
+                Tags = tags,
             };
 
             return View(model);
