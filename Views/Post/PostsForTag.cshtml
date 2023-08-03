@@ -1,5 +1,57 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model webtuyensinh.ViewModels.PostViewModel
+
 @{
+    ViewData["Title"] = "Details";
+}
+
+@section Styles {
+    <link href="~/assets/css/pages/post.min.css" rel="stylesheet" />
+}
+
+<div class="posts-tag container py-5">
+    <div class="row g-5">
+        <div class="col-md-4">
+            <div class="position-sticky posts-tag__bar" style="top: 2rem;">
+                <div class="p-4 mb-3 rounded posts-tag__info">
+                    <h5 class="mb-3 posts-tag__tt">Từ khóa liên quan:</h5>
+                    <div class="posts-tag__tags d-flex flex-wrap">
+                        @foreach (var tag in Model.Tags)
+                        {
+                            <a href="/tags/@tag.Name" class="posts-tag__tags-item">@tag.Name</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            @foreach(var post in Model.Posts)
+            {
+                <div class="posts-tag__main p-3 mb-3">
+                    <h5 class="pb-2 mb-2 posts-tag__title fst-italic border-bottom">
+                        @post.Title
+                    </h5>
+                    <article class="blog-post">
+                        @*<h2 class="blog-post-title"></h2>*@
+                        @if (post.CreatedAt != null)
+                        {
+                            <p class="blog-post-meta">Đã đăng vào: @post.CreatedAt.Value.ToString("MMMM, dd, yyyy")</p>
+                        }
+                        @if (post.UpdatedAt != null)
+                        {
+                            <p class="blog-post-meta">Đã sửa vào: @post.UpdatedAt.Value.ToString("MMMM, dd, yyyy")</p>
+                        }
+                        <a href="/Post/Details/@post.Id" class="blog-post-des">@Html.Raw(post.Content)</a>
+                    </article>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $(".p-main").addClass("dark")
+        })
+    </script>
 }

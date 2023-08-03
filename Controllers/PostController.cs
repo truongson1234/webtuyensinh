@@ -19,8 +19,15 @@ namespace webtuyensinh.Controllers
         [Route("/tags/{name}")]
         public IActionResult PostsForTag(string name)
         {
+            var tags = _context.TagModel.Where(x => x.Name.Contains(name)).ToList();
             var posts = _context.PostModel.Where(t => t.PostTags.Any(pt => pt.Tag.Name.Contains(name))).ToList();
-            return Json(posts);
+
+            var model = new PostViewModel
+            {
+                Tags = tags,
+                Posts = posts
+            };
+            return View(model);
         }
         public IActionResult Details(int id)
         {
