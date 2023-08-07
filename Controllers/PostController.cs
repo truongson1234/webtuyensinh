@@ -79,7 +79,7 @@ namespace webtuyensinh.Controllers
 
             var tags = _context.PostTagModel.Where(pt => pt.PostID == id).Select(pt => pt.Tag).ToList();
             var relatedPosts = _context.PostModel
-                .Where(p => p.CategoryId == post.CategoryId || p.Title.Contains(post.Title)  && p.Id != post.Id)
+                .Where(p => p.CategoryId == post.CategoryId || p.Title.Contains(post.Title) && p.Id != post.Id)
                 .Take(3)
                 .ToList();
 

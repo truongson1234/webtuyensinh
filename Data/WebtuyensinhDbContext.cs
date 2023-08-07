@@ -54,18 +54,6 @@ public class WebtuyensinhDbContext : DbContext
             new PostModel { Id = 9, CategoryId = 10, Title = "Bài viết 9", Avartar = "news-avartar.jpg", Content = "<p>Đây là nội dung bài viết</p>", Description = "......", CreatedAt = DateTime.Now },
             new PostModel { Id = 10, CategoryId = 1, Title = "Bài viết 10", Avartar = "news-avartar.jpg", Content = "<p>Đây là nội dung bài viết</p>", Description = "......", CreatedAt = DateTime.Now }
         );
-
-        modelBuilder.Entity<MenuModel>().HasData(
-            new MenuModel { Id = 1, Name = "Home", CreatedAt = DateTime.Now }    
-        );
-
-        modelBuilder.Entity<MenuItemModel>().HasData(
-            new MenuItemModel { Id = 1, Name = "Giới thiệu", GroupID = 1, URL = "/", Controller = null, Action = null, DisplayOrder = 1, DisplayCondition = Conditions.Normal, Status = true, Target = "_self", CreatedAt = DateTime.Now },
-            new MenuItemModel { Id = 2, Name = "Privacy", GroupID = 1, URL = null, Controller = "Home", Action = "Privacy", DisplayOrder = 2, DisplayCondition = Conditions.Normal, Status = true, Target = "_blank", CreatedAt = DateTime.Now },
-            new MenuItemModel { Id = 3, Name = "Đăng nhập", GroupID = 1, URL = "/login", Controller = null, Action = null, DisplayOrder = 3, DisplayCondition = Conditions.Normal, Status = true, Target = "_self", CreatedAt = DateTime.Now },
-            new MenuItemModel { Id = 4, Name = "Quản trị viên", GroupID = 1, URL = null, Controller = "Admin", Action = "Index", DisplayOrder = 4, DisplayCondition = Conditions.RoleAdmin, Status = true, Target = "_self", CreatedAt = DateTime.Now },
-            new MenuItemModel { Id = 5, Name = "Đăng xuất", GroupID = 1, URL = "/logout", Controller = null, Action = null, DisplayOrder = 5, DisplayCondition = Conditions.Authentication, Status = true, Target = "_self", CreatedAt = DateTime.Now }
-        );
     }
 
     public DbSet<AdmissionModel> AdmissionModel { get; set; }
