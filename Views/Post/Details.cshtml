@@ -9,105 +9,47 @@
 }
 
 <div class="post-details container py-5">
-    <div class="row g-5">
-        <div class="col-md-4">
+    <div class="row">
+        <div class="col-md-8 order-2 order-md-1">
+            <div class="post-details__main px-3 py-3">
+                <h3 class="mb-3 post-details__title">
+                    @Html.DisplayFor(model => model.Post.Title)
+                </h3>
+                <p class="mb-3 post-details__des">@Html.DisplayFor(model => model.Post.Description)</p>
+                @if (Model.Post.CreatedAt != null)
+                {
+                    <p class="blog-post-meta"><i class="fas fa-calendar-alt me-2"></i> @Model.Post.CreatedAt.Value.ToString("dd / MM / yyyy")</p>
+                }
+                @if (Model.Post.UpdatedAt != null)
+                {
+                    <p class="blog-post-meta"><i class="fas fa-calendar-alt me-2"></i> @Model.Post.UpdatedAt.Value.ToString("dd / MM / yyyy")</p>
+                }
+                <article class="blog-post border-top">
+                    <p>@Html.Raw(Model.Post.Content)</p>
+                </article>
+            </div>
+        </div>
+        <div class="col-md-4 order-1 order-md-2">
             <div class="position-sticky post-details__bar" style="top: 2rem;">
-                <div class="p-4 mb-3 rounded post-details__info">
-                    <h3 class="fst-italic post-details__cate">@Html.DisplayFor(model => model.Post.Category.Name)</h3>
-                    <p class="mb-3 post-details__des">@Html.DisplayFor(model => model.Post.Description)</p>
+                <div class="p-3 mb-3 post-details__info">
+                    <h3 class="post-details__cate mb-3">@Html.DisplayFor(model => model.Post.Category.Name)</h3>
+
                     <h5 class="mb-3 post-details__tt">Từ khóa:</h5>
-                    <div class="post-details__tags d-flex flex-wrap">
+                    <div class="post-details__tags mb-3 d-flex flex-wrap">
                         @foreach (var tag in Model.Tags)
                         {
                             <a href="/tags/@tag.Name" class="post-details__tags-item">@tag.Name</a>
                         }
                     </div>
-                </div>
-                <div>
-                    @foreach(var r_post in Model.Posts)
-                    {
-                        <a href="/Post/Details/@r_post.Id">@r_post.Title</a>
-                    }
-                </div>
-
-                @*<div class="p-4">
-                    <h4 class="fst-italic">Menu</h4>
-                    <ul class="list-unstyled ps-0">
-                        <li class="mb-1">
-                            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
-                                <i class="fas fa-caret-down"></i>
-                                Home
-                            </button>
-                            <div class="collapse" id="home-collapse" style="">
-                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li><a href="#" class="link-dark rounded">Overview</a></li>
-                                    <li><a href="#" class="link-dark rounded">Updates</a></li>
-                                    <li><a href="#" class="link-dark rounded">Reports</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="mb-1">
-                            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-                                <i class="fas fa-caret-down"></i>
-                                Dashboard
-                            </button>
-                            <div class="collapse" id="dashboard-collapse" style="">
-                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li><a href="#" class="link-dark rounded">Overview</a></li>
-                                    <li><a href="#" class="link-dark rounded">Weekly</a></li>
-                                    <li><a href="#" class="link-dark rounded">Monthly</a></li>
-                                    <li><a href="#" class="link-dark rounded">Annually</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="mb-1">
-                            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-                                <i class="fas fa-caret-down"></i>
-                                Orders
-                            </button>
-                            <div class="collapse" id="orders-collapse">
-                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li><a href="#" class="link-dark rounded">New</a></li>
-                                    <li><a href="#" class="link-dark rounded">Processed</a></li>
-                                    <li><a href="#" class="link-dark rounded">Shipped</a></li>
-                                    <li><a href="#" class="link-dark rounded">Returned</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="border-top my-3"></li>
-                        <li class="mb-1">
-                            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
-                                Account
-                            </button>
-                            <div class="collapse" id="account-collapse">
-                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li><a href="#" class="link-dark rounded">New...</a></li>
-                                    <li><a href="#" class="link-dark rounded">Profile</a></li>
-                                    <li><a href="#" class="link-dark rounded">Settings</a></li>
-                                    <li><a href="#" class="link-dark rounded">Sign out</a></li>
-                                </ul>
-                            </div>
-                        </li>
+                    <h5 class="mb-3 post-details__tt">Bài viết liên quan:</h5>
+                    <ul class="m-0 ps-3">
+                        @foreach (var r_post in Model.Posts)
+                        {
+                            <li><a href="/Post/Details/@r_post.Id" class="text-dark text-decoration-none">@r_post.Title</a></li>
+                        }
                     </ul>
-                </div>*@
+                </div>
             </div>
-        </div>
-        <div class="col-md-8 py-4 post-details__main">
-            <h3 class="pb-4 mb-4 post-details__title fst-italic border-bottom">
-                @Html.DisplayFor(model => model.Post.Title)
-            </h3>
-            <article class="blog-post">
-                @*<h2 class="blog-post-title"></h2>*@
-                @if (Model.Post.CreatedAt != null)
-                {
-                    <p class="blog-post-meta">Đã đăng vào: @Model.Post.CreatedAt.Value.ToString("MMMM, dd, yyyy")</p>
-                }
-                @if (Model.Post.UpdatedAt != null)
-                {
-                    <p class="blog-post-meta">Đã sửa vào: @Model.Post.UpdatedAt.Value.ToString("MMMM, dd, yyyy")</p>
-                }
-                <p>@Html.Raw(Model.Post.Content)</p>
-            </article>
         </div>
     </div>
 </div>

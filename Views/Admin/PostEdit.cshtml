@@ -47,7 +47,7 @@
         <hr />
     </div>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-12">
             @using (Html.BeginForm("PostUpdate", "Admin", FormMethod.Post, new { @class = "px-3 pt-5 pb-4", enctype = "multipart/form-data" }))
             {
                 @Html.HiddenFor(model => model.Id)

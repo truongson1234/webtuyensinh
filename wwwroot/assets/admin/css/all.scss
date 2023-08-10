@@ -1,4 +1,10 @@
-﻿.pagination {
+﻿.sidenav {
+    background: #fff;
+}
+.sidenav.show {
+    transform: translateX(0)!important;
+}
+.pagination {
     display: flex;
     justify-content: center;
     list-style: none;

@@ -181,8 +181,8 @@
   flex-direction: column;
 }
 .home-news .home-news__article.main .home-news__img {
-  width: 400px;
-  height: 250px;
+  max-width: 400px;
+  max-height: 250px;
 }
 .home-news .home-news__article .home-news__img {
   border-radius: 5px;
@@ -215,8 +215,8 @@
   margin-bottom: 15px;
 }
 .home-news .home-news__article.extra .home-news__img {
-  width: 182px;
-  height: 120px;
+  min-width: 182px;
+  max-height: 120px;
   flex-shrink: 0;
 }
 .home-news .home-news__article.extra .home-news__category {

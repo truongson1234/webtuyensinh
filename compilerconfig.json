@@ -22,5 +22,9 @@
   {
     "outputFile": "wwwroot/assets/css/layout.css",
     "inputFile": "wwwroot/assets/css/layout.scss"
+  },
+  {
+    "outputFile": "wwwroot/assets/css/layout_auth.css",
+    "inputFile": "wwwroot/assets/css/layout_auth.scss"
   }
 ]

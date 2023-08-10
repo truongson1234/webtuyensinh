@@ -58,8 +58,8 @@ namespace webtuyensinh.Controllers
             var article_main = _service.GetPostsMain();
 
             //Lấy ra 3 bản mới nhất của các danh mục
-            var article_tab1 = _service.GetPostsTab(1);
-            var article_tab2 = _service.GetPostsTab(2);
+            var article_tab1 = _service.GetPostsTab(2);
+            var article_tab2 = _service.GetPostsTab(1);
             var article_tab3 = _service.GetPostsTab(3);
 
             //Lấy ra 6 bản ghi danh mục
@@ -68,7 +68,7 @@ namespace webtuyensinh.Controllers
             var cate_germany = _service.GetCategoryById(1);
             var cate_korea = _service.GetCategoryById(2);
             var cate_japan = _service.GetCategoryById(3);
-            var cate_australia = _service.GetCategoryById(9);
+            var cate_australia = _service.GetCategoryById(4);
             var cate_canada = _service.GetCategoryById(5);
 
             var model = new HomeViewModel

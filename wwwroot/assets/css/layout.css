@@ -1,4 +1,13 @@
-﻿header .topbar {
+﻿@font-face {
+  font-family: "San Francisco";
+  font-display: swap;
+  src: url("../webfonts/SanFrancisco/SanFranciscoDisplay-Regular.otf") format("truetype");
+}
+body {
+  font-family: "San Francisco";
+}
+
+header .topbar {
   padding: 5px 0;
   background: var(--1, #007DD1);
 }
@@ -10,11 +19,19 @@ header .topbar a {
 header .topbar a:hover {
   color: #ffffff;
 }
+header .topbar .topbar__contactl a {
+  color: var(--white, #FFF);
+  font-size: 14px;
+  font-weight: 400;
+}
 header nav.navbar .navbar-brand {
   height: 70px;
 }
 header nav.navbar .navbar-nav .nav-link {
+  color: var(--4, #000);
+  font-size: 16px;
   font-weight: 600;
+  text-transform: uppercase;
 }
 header nav.navbar .navbar-btn_search {
   color: var(--1, #007DD1);

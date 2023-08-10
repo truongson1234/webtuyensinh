@@ -1,4 +1,15 @@
-﻿header {
+﻿@font-face {
+    font-family: "San Francisco";
+    font-display: swap;
+    src: url("../webfonts/SanFrancisco/SanFranciscoDisplay-Regular.otf") format('truetype');
+}
+@mixin SanFrancisco {
+    font-family: "San Francisco";
+}
+body {
+    @include SanFrancisco;
+}
+header {
     .topbar {
         padding: 5px 0;
         background: var(--1, #007DD1);
@@ -15,6 +26,9 @@
 
         .topbar__contactl {
             a {
+                color: var(--white, #FFF);
+                font-size: 14px;
+                font-weight: 400;
             }
         }
     }
@@ -25,7 +39,10 @@
         }
 
         .navbar-nav .nav-link {
+            color: var(--4, #000);
+            font-size: 16px;
             font-weight: 600;
+            text-transform: uppercase;
         }
 
         .navbar-btn_search {
