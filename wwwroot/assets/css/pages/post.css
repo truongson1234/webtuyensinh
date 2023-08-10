@@ -8,12 +8,11 @@
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 .post-details__cate {
-  padding: 6px 12px;
   background-color: #F26725;
   text-transform: uppercase;
   color: #fff;
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 .post-details__des {
   font-weight: 500;
@@ -48,6 +47,75 @@
   background: #ffffff;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
+.post-details__main .blog-post {
+  border: 2px dashed #ddd;
+}
+.post-details .menu-categories {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.post-details .menu-categories-item {
+  padding-left: 3px;
+  border-bottom: 1px solid #ddd;
+  transition: all 0.4s ease;
+}
+.post-details .menu-categories-item:hover {
+  background-color: #ddd;
+  transition: all 0.4s ease;
+}
+.post-details .menu-categories-item > a {
+  display: block;
+  color: #000;
+  text-decoration: none;
+}
+.post-details .r_post-item {
+  height: 80px;
+}
+.post-details .r_post-item img {
+  width: 130px;
+  margin-right: 10px;
+  border-radius: 2px;
+}
+.post-details .r_post-content p {
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #57606f;
+}
+.post-details .r_post-content a {
+  font-weight: 600;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.post-details .admission-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.post-details .admission-form .f1 {
+  width: 100%;
+  display: block;
+  background-color: #F26725;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.post-details .admission-form .btn-submit {
+  padding: 6px 12px;
+  border: 0;
+  outline: none;
+  background: #F26725;
+  color: #fff;
+  border-radius: 8px;
+}
+
 .posts-tag__info {
   background: #ffffff !important;
   border-radius: 4px;

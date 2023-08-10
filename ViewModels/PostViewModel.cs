@@ -9,5 +9,8 @@ namespace webtuyensinh.ViewModels
         public List<TagModel> Tags { get; set; }
         public IEnumerable<PostModel> Posts { get; set; }
         public IEnumerable<CategoryModel> Categories { get; set; }
+        public IEnumerable<MenuItemModel> MenuCategories { get; set; }
+        public AdmissionModel AdmissionForm { get; set; }
+
     }
 }

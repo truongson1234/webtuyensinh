@@ -11,12 +11,11 @@
     }
 
     &__cate {
-        padding: 6px 12px;
         background-color: #F26725;
         text-transform: uppercase;
         color: #fff;
         font-weight: 700;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
 
     &__des {
@@ -58,6 +57,87 @@
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
         .blog-post {
+            border: 2px dashed #ddd;
+        }
+    }
+
+    .menu-categories {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        &-item {
+            padding-left: 3px;
+            border-bottom: 1px solid #ddd;
+            transition: all .4s ease;
+
+            &:hover {
+                background-color: #ddd;
+                transition: all .4s ease;
+            }
+
+            & > a {
+                display: block;
+                color: #000;
+                text-decoration: none;
+            }
+        }
+    }
+
+    .r_post {
+        &-item {
+            height: 80px;
+
+            img {
+                width: 130px;
+                margin-right: 10px;
+                border-radius: 2px;
+            }
+        }
+
+        &-content {
+            p {
+                margin-bottom: 6px;
+                font-size: 14px;
+                color: #57606f;
+            }
+
+            a {
+                font-weight: 600;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+        }
+    }
+
+    .admission-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: #ffffff;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+        .f1 {
+            width: 100%;
+            display: block;
+            background-color: #F26725;
+            text-transform: uppercase;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .btn-submit {
+            padding: 6px 12px;
+            border: 0;
+            outline: none;
+            background: #F26725;
+            color: #fff;
+            border-radius: 8px;
         }
     }
 }
