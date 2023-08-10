@@ -37,6 +37,15 @@
                 <article class="blog-post p-2">
                     <p>@Html.Raw(Model.Post.Content)</p>
                 </article>
+                <p class="mb-0 mt-3">
+                    <span>Từ khóa: </span> 
+                    @foreach (var tag in Model.Tags)
+                    {
+                        <a href="/tags/@tag.Name" class="text-decoration-none text-dark">@tag.Name</a>
+                        <i>, </i>
+                    }
+                    <i>...</i>
+                </p>
             </div>
         </div>
         <div class="col-md-4 order-1 order-md-2">
