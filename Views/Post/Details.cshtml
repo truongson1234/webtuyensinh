@@ -1,7 +1,7 @@
 ﻿@model webtuyensinh.ViewModels.PostViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Bài viết";
 }
 
 @section Styles {
@@ -13,8 +13,8 @@
     <div class="row mb-3">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a class="text-decoration-none" href="#"><i class="fas fa-home"></i> Trang chủ</a></li>
-                <li class="breadcrumb-item"><a class="text-decoration-none" href="#">@Html.DisplayFor(model => model.Post.Category.Name)</a></li>
+                <li class="breadcrumb-item"><a class="text-decoration-none" href="/"><i class="fas fa-home"></i> Trang chủ</a></li>
+                <li class="breadcrumb-item"><a class="text-decoration-none" href="/blogs/@(Model.Post.Category.Url)">@Html.DisplayFor(model => model.Post.Category.Name)</a></li>
                 <li class="breadcrumb-item active" aria-current="page">@Html.DisplayFor(model => model.Post.Title)</li>
             </ol>
         </nav>
@@ -77,7 +77,7 @@
                                 <img class="flex-shrink-0" src="@Url.Content("~/contents/" + r_post.Avartar)" />
                                 <div class="r_post-content flex-grow-1">
                                     <p><i class="fas fa-calendar-alt me-2"></i>@(r_post.CreatedAt != null ? r_post.CreatedAt.Value.ToString("dd / MM / yyyy") : r_post.UpdatedAt.Value.ToString("dd / MM / yyyy"))</p>
-                                    <a href="/Post/Details/@r_post.Id" class="text-dark text-decoration-none">@r_post.Title</a>
+                                    <a href="/blogs/@(r_post.Url).html" class="text-dark text-decoration-none">@r_post.Title</a>
                                 </div>
                             </li>
                         }

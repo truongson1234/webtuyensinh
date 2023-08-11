@@ -30,29 +30,29 @@ public class WebtuyensinhDbContext : DbContext
         );
 
         modelBuilder.Entity<CategoryModel>().HasData(
-            new CategoryModel { Id = 1, Name = "Danh mục tin tức 1", Description = "......", CreatedAt = DateTime.Now },
-            new CategoryModel { Id = 2, Name = "Danh mục tin tức 2", Description = "......", CreatedAt = DateTime.Now },
-            new CategoryModel { Id = 3, Name = "Danh mục tin tức 3", Description = "......", CreatedAt = DateTime.Now },
-            new CategoryModel { Id = 4, Name = "Danh mục tin tức 4", Description = "......", CreatedAt = DateTime.Now },
-            new CategoryModel { Id = 5, Name = "Danh mục tin tức 5", Description = "......", CreatedAt = DateTime.Now },
-            new CategoryModel { Id = 6, Name = "Danh mục tin tức 6", Description = "......", CreatedAt = DateTime.Now },
-            new CategoryModel { Id = 7, Name = "Danh mục tin tức 7", Description = "......", CreatedAt = DateTime.Now },
-            new CategoryModel { Id = 8, Name = "Danh mục tin tức 8", Description = "......", CreatedAt = DateTime.Now },
-            new CategoryModel { Id = 9, Name = "Danh mục tin tức 9", Description = "......", CreatedAt = DateTime.Now },
-            new CategoryModel { Id = 10, Name = "Danh mục tin tức 10", Description = "......", CreatedAt = DateTime.Now }
+            new CategoryModel { Id = 1, Name = "Danh mục tin tức 1", Description = "......", Url = "danh-muc1", CreatedAt = DateTime.Now },
+            new CategoryModel { Id = 2, Name = "Danh mục tin tức 2", Description = "......", Url = "danh-muc2", CreatedAt = DateTime.Now },
+            new CategoryModel { Id = 3, Name = "Danh mục tin tức 3", Description = "......", Url = "danh-muc3", CreatedAt = DateTime.Now },
+            new CategoryModel { Id = 4, Name = "Danh mục tin tức 4", Description = "......", Url = "danh-muc4", CreatedAt = DateTime.Now },
+            new CategoryModel { Id = 5, Name = "Danh mục tin tức 5", Description = "......", Url = "danh-muc5", CreatedAt = DateTime.Now },
+            new CategoryModel { Id = 6, Name = "Danh mục tin tức 6", Description = "......", Url = "danh-muc6", CreatedAt = DateTime.Now },
+            new CategoryModel { Id = 7, Name = "Danh mục tin tức 7", Description = "......", Url = "danh-muc7", CreatedAt = DateTime.Now },
+            new CategoryModel { Id = 8, Name = "Danh mục tin tức 8", Description = "......", Url = "danh-muc8", CreatedAt = DateTime.Now },
+            new CategoryModel { Id = 9, Name = "Danh mục tin tức 9", Description = "......", Url = "danh-muc9", CreatedAt = DateTime.Now },
+            new CategoryModel { Id = 10, Name = "Danh mục tin tức 10", Description = "......", Url = "danh-muc10", CreatedAt = DateTime.Now }
         );
 
         modelBuilder.Entity<PostModel>().HasData(
-            new PostModel { Id = 1, CategoryId = 2, Title = "Bài viết 1", Avartar = "news-avartar.jpg", Content = "<p>Đây là nội dung bài viết</p>", Description = "......", CreatedAt = DateTime.Now },
-            new PostModel { Id = 2, CategoryId = 2, Title = "Bài viết 2", Avartar = "news-avartar.jpg", Content = "<p>Đây là nội dung bài viết</p>", Description = "......", CreatedAt = DateTime.Now },
-            new PostModel { Id = 3, CategoryId = 3, Title = "Bài viết 3", Avartar = "news-avartar.jpg", Content = "<p>Đây là nội dung bài viết</p>", Description = "......", CreatedAt = DateTime.Now },
-            new PostModel { Id = 4, CategoryId = 3, Title = "Bài viết 4", Avartar = "news-avartar.jpg", Content = "<p>Đây là nội dung bài viết</p>", Description = "......", CreatedAt = DateTime.Now },
-            new PostModel { Id = 5, CategoryId = 5, Title = "Bài viết 5", Avartar = "news-avartar.jpg", Content = "<p>Đây là nội dung bài viết</p>", Description = "......", CreatedAt = DateTime.Now },
-            new PostModel { Id = 6, CategoryId = 5, Title = "Bài viết 6", Avartar = "news-avartar.jpg", Content = "<p>Đây là nội dung bài viết</p>", Description = "......", CreatedAt = DateTime.Now },
-            new PostModel { Id = 7, CategoryId = 9, Title = "Bài viết 7", Avartar = "news-avartar.jpg", Content = "<p>Đây là nội dung bài viết</p>", Description = "......", CreatedAt = DateTime.Now },
-            new PostModel { Id = 8, CategoryId = 8, Title = "Bài viết 8", Avartar = "news-avartar.jpg", Content = "<p>Đây là nội dung bài viết</p>", Description = "......", CreatedAt = DateTime.Now },
-            new PostModel { Id = 9, CategoryId = 10, Title = "Bài viết 9", Avartar = "news-avartar.jpg", Content = "<p>Đây là nội dung bài viết</p>", Description = "......", CreatedAt = DateTime.Now },
-            new PostModel { Id = 10, CategoryId = 1, Title = "Bài viết 10", Avartar = "news-avartar.jpg", Content = "<p>Đây là nội dung bài viết</p>", Description = "......", CreatedAt = DateTime.Now }
+            new PostModel { Id = 1, CategoryId = 2, Title = "Bài viết 1", Avartar = "news-avartar.jpg", Content = "<p>Đây là nội dung bài viết</p>", Description = "......", Url = "bai-viet1", CreatedAt = DateTime.Now },
+            new PostModel { Id = 2, CategoryId = 2, Title = "Bài viết 2", Avartar = "news-avartar.jpg", Content = "<p>Đây là nội dung bài viết</p>", Description = "......", Url = "bai-viet2", CreatedAt = DateTime.Now },
+            new PostModel { Id = 3, CategoryId = 3, Title = "Bài viết 3", Avartar = "news-avartar.jpg", Content = "<p>Đây là nội dung bài viết</p>", Description = "......", Url = "bai-viet3", CreatedAt = DateTime.Now },
+            new PostModel { Id = 4, CategoryId = 3, Title = "Bài viết 4", Avartar = "news-avartar.jpg", Content = "<p>Đây là nội dung bài viết</p>", Description = "......", Url = "bai-viet4", CreatedAt = DateTime.Now },
+            new PostModel { Id = 5, CategoryId = 5, Title = "Bài viết 5", Avartar = "news-avartar.jpg", Content = "<p>Đây là nội dung bài viết</p>", Description = "......", Url = "bai-viet5", CreatedAt = DateTime.Now },
+            new PostModel { Id = 6, CategoryId = 5, Title = "Bài viết 6", Avartar = "news-avartar.jpg", Content = "<p>Đây là nội dung bài viết</p>", Description = "......", Url = "bai-viet6", CreatedAt = DateTime.Now },
+            new PostModel { Id = 7, CategoryId = 9, Title = "Bài viết 7", Avartar = "news-avartar.jpg", Content = "<p>Đây là nội dung bài viết</p>", Description = "......", Url = "bai-viet7", CreatedAt = DateTime.Now },
+            new PostModel { Id = 8, CategoryId = 8, Title = "Bài viết 8", Avartar = "news-avartar.jpg", Content = "<p>Đây là nội dung bài viết</p>", Description = "......", Url = "bai-viet8", CreatedAt = DateTime.Now },
+            new PostModel { Id = 9, CategoryId = 10, Title = "Bài viết 9", Avartar = "news-avartar.jpg", Content = "<p>Đây là nội dung bài viết</p>", Description = "......", Url = "bai-viet9", CreatedAt = DateTime.Now },
+            new PostModel { Id = 10, CategoryId = 1, Title = "Bài viết 10", Avartar = "news-avartar.jpg", Content = "<p>Đây là nội dung bài viết</p>", Description = "......", Url = "bai-viet10", CreatedAt = DateTime.Now }
         );
     }
 

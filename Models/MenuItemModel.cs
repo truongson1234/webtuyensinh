@@ -9,7 +9,6 @@ namespace webtuyensinh.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
         public int? GroupID { get; set; }
         public int? ParentID { get; set; }
         [Required]

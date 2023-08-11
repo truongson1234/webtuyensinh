@@ -1,49 +1,168 @@
 ﻿@model webtuyensinh.ViewModels.CategoryViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Danh mục";
 }
 
 @section Styles {
     <link href="~/assets/css/pages/post.min.css" rel="stylesheet" />
 }
 
-<div class="posts-cate container py-5">
-    <div class="row g-5">
-        <div class="col-md-4">
+<div class="posts-cate container py-3">
+    <div class="row mb-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a class="text-decoration-none" href="/"><i class="fas fa-home"></i> Trang chủ</a></li>
+                @if(Model.Category != null)
+                {
+                    <li class="breadcrumb-item">@Html.DisplayFor(model => model.Category.Name)</li>
+                }
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
             <div class="position-sticky posts-cate__bar" style="top: 2rem;">
-                <div class="p-4 mb-3 rounded posts-cate__info">
-                    <h5 class="mb-3 posts-cate__tt">Danh mục liên quan:</h5>
-                    <div class="posts-cate__tags d-flex flex-wrap">
-                        @foreach (var cate in Model.Categories)
-                        {
-                            <a href="/tags/@cate.Id" class="posts-cate__tags-item">@cate.Name</a>
-                        }
+                <h5 class="mb-3 posts-cate__tt p-3 bg-success text-white">Danh mục bài viết</h5>
+                <div class="mb-3 posts-cate__info">
+                    <div class="accordion accordion-flush" id="mcc">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="menu-accordion__button accordion-button collapsed p-3" type="button" data-bs-toggle="collapse" data-bs-target="#mcc-one" aria-expanded="false" aria-controls="mcc-one">
+                                    <a class="text-decoration-none text-uppercase text-light fw-bold" href="#">Giới thiệu 1</a>
+                                    <i class="fas fa-plus text-light"></i>
+                                </button>
+                            </h2>
+                            <div id="mcc-one" class="accordion-collapse collapse" data-bs-parent="#mcc">
+                                <ul class="menu-accordion m-0 p-0">
+                                    <li class="menu-accordion__item">
+                                        <a class="d-block p-3 fw-bold" href="#">Link ##</a>
+                                    </li>
+                                    <li class="menu-accordion__item">
+                                        <a class="d-block p-3 fw-bold" href="#">Link ##</a>
+                                    </li>
+                                    <li class="menu-accordion__item">
+                                        <a class="d-block p-3 fw-bold" href="#">Link ##</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="menu-accordion__button accordion-button collapsed p-3" type="button" data-bs-toggle="collapse" data-bs-target="#mcc-two" aria-expanded="false" aria-controls="mcc-two">
+                                    <a class="text-decoration-none text-uppercase text-light fw-bold" href="#">Giới thiệu 2</a>
+                                    <i class="fas fa-plus text-light"></i>
+                                </button>
+                            </h2>
+                            <div id="mcc-two" class="accordion-collapse collapse" data-bs-parent="#mcc">
+                                <ul class="menu-accordion m-0 p-0">
+                                    <li class="menu-accordion__item">
+                                        <a class="d-block p-3 fw-bold" href="#">Link ##</a>
+                                    </li>
+                                    <li class="menu-accordion__item">
+                                        <a class="d-block p-3 fw-bold" href="#">Link ##</a>
+                                    </li>
+                                    <li class="menu-accordion__item">
+                                        <a class="d-block p-3 fw-bold" href="#">Link ##</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="menu-accordion__button accordion-button collapsed p-3" type="button" data-bs-toggle="collapse" data-bs-target="#mcc-there" aria-expanded="false" aria-controls="mcc-there">
+                                    <a class="text-decoration-none text-uppercase text-light fw-bold" href="#">Giới thiệu 3</a>
+                                    <i class="fas fa-plus text-light"></i>
+                                </button>
+                            </h2>
+                            <div id="mcc-there" class="accordion-collapse collapse" data-bs-parent="#mcc">
+                                <ul class="menu-accordion m-0 p-0">
+                                    <li class="menu-accordion__item">
+                                        <a class="d-block p-3 fw-bold" href="#">Link ##</a>
+                                    </li>
+                                    <li class="menu-accordion__item">
+                                        <a class="d-block p-3 fw-bold" href="#">Link ##</a>
+                                    </li>
+                                    <li class="menu-accordion__item">
+                                        <a class="d-block p-3 fw-bold" href="#">Link ##</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                @using (Html.BeginForm("Create", "Customer", FormMethod.Post, new { @class = "admission-form p-3" }))
+                {
+                    <h3 class="f1 py-2 px-3 mb-3 text-center">ĐĂNG KÝ THÔNG TIN</h3>
+                    <div class="mb-3 w-100">
+                        @Html.TextBoxFor(model => model.AdmissionForm.Name, new { @class = "form-control", placeholder = "Họ và tên*" })
+                        @Html.ValidationMessageFor(model => model.AdmissionForm.Name)
+                    </div>
+
+                    <div class="mb-3 w-100">
+                        @Html.TextBoxFor(model => model.AdmissionForm.Address, new { @class = "form-control", placeholder = "Địa chỉ*" })
+                        @Html.ValidationMessageFor(model => model.AdmissionForm.Address)
+                    </div>
+
+                    <div class="mb-3 w-100">
+                        @Html.TextBoxFor(model => model.AdmissionForm.PhoneNumber, new { @class = "form-control", placeholder = "Số điện thoại*" })
+                        @Html.ValidationMessageFor(model => model.AdmissionForm.PhoneNumber)
+                    </div>
+
+                    <div class="mb-3 w-100">
+                        <select class="form-control" asp-for="AdmissionForm.EducationLevel" asp-items="Html.GetEnumSelectList<LevelOptions>()">
+                            <option selected>Bậc học và đất nước quan tâm</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.AdmissionForm.EducationLevel)
+                    </div>
+
+                    <div class="mb-3 w-100">
+                        <select class="form-control" asp-for="AdmissionForm.TypeOfTraining" asp-items="Html.GetEnumSelectList<TypeOptions>()">
+                            <option selected>Hình thức học</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.AdmissionForm.TypeOfTraining)
+                    </div>
+
+                    <div class="mb-3 w-100">
+                        @Html.TextAreaFor(model => model.AdmissionForm.Desire, new { @class = "form-control", placeholder = "Chuyên ngành hay đất nước bạn muốn đến?" })
+                        @Html.ValidationMessageFor(model => model.AdmissionForm.Desire)
+                    </div>
+
+                    <button type="submit" class="btn btn-submit btn-primary mx-auto">XÁC NHẬN</button>
+                }
             </div>
         </div>
-        <div class="col-md-8">
-            @foreach (var post in Model.Category.Posts)
-            {
-                <div class="posts-cate__main p-3 mb-3">
-                    <h5 class="pb-2 mb-2 posts-cate__title fst-italic border-bottom">
-                        @post.Title
-                    </h5>
-                    <article class="blog-post">
-                        @*<h2 class="blog-post-title"></h2>*@
-                        @if (post.CreatedAt != null)
-                        {
-                            <p class="blog-post-meta">Đã đăng vào: @post.CreatedAt.Value.ToString("MMMM, dd, yyyy")</p>
-                        }
-                        @if (post.UpdatedAt != null)
-                        {
-                            <p class="blog-post-meta">Đã sửa vào: @post.UpdatedAt.Value.ToString("MMMM, dd, yyyy")</p>
-                        }
-                        <a href="/Post/Details/@post.Id" class="blog-post-des">@Html.Raw(post.Content)</a>
-                    </article>
-                </div>
-            }
+        <div class="col-md-9">
+            <div class="row">
+                @if (Model.Posts == null || Model.Posts.Count() == 0)
+                {
+                    <div class="alert alert-success" role="alert">
+                        Không có bài viết liên quan đến danh mục này!
+                    </div>
+                } else
+                {
+                    @foreach (var post in Model.Posts)
+                    {
+                        <div class="col-12 col-md-4">
+                            <div class="posts-cate__main mb-3">
+                                <a class="blog-post-img" href="/blogs/@(post.Url).html">
+                                    <img src="@Url.Content("~/contents/" + post.Avartar)" />
+                                </a>
+                                <article class="blog-post p-3">
+                                    <a href="/blogs/@(post.Category.Url)" class="mb-2 blog-post-cate">
+                                        @post.Category.Name
+                                    </a>
+                                    <a href="/blogs/@(post.Url).html" class="mb-2 blog-post-title">
+                                        @post.Title
+                                    </a>
+                                    <p class="blog-post-des m-0">@Html.Raw(post.Description)</p>
+                                </article>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            
         </div>
     </div>
 </div>

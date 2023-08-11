@@ -136,7 +136,7 @@
                     {
                         <div class="col-12 col-md-6">
                             <div class="home-news__article main">
-                                <a asp-controller="Post" asp-action="Details" asp-route-id="@am.Id" class="home-news__img d-block">
+                                <a href="/blogs/@(am.Url).html" class="home-news__img d-block">
                                     <img src="@Url.Content("~/contents/" + am.Avartar)" />
                                 </a>
                                 <span class="home-news__category">@am.Category.Name</span>
@@ -156,7 +156,7 @@
                             @foreach(var aone in Model.ArticleCateOne)
                             {
                                 <div class="home-news__article extra">
-                                    <a asp-controller="Post" asp-action="Details" asp-route-id="@aone.Id" class="home-news__img me-3 d-block">
+                                    <a href="/blogs/@(aone.Url).html" class="home-news__img me-3 d-block">
                                         <img src="@Url.Content("~/contents/" + aone.Avartar)" />
                                     </a>
                                     <div class="d-flex flex-column flex-fill">
@@ -173,7 +173,7 @@
                             @foreach(var atwo in Model.ArticleCateTwo)
                             {
                                 <div class="home-news__article extra">
-                                    <a asp-controller="Post" asp-action="Details" asp-route-id="@atwo.Id" class="home-news__img me-3 d-block">
+                                    <a href="/blogs/@(atwo.Url).html" class="home-news__img me-3 d-block">
                                         <img src="@Url.Content("~/contents/" + atwo.Avartar)" />
                                     </a>
                                     <div class="d-flex flex-column flex-fill">
@@ -189,7 +189,7 @@
                             @foreach(var athree in Model.ArticleCateThree)
                             {
                                 <div class="home-news__article extra">
-                                    <a asp-controller="Post" asp-action="Details" asp-route-id="@athree.Id" class="home-news__img me-3 d-block">
+                                    <a href="/blogs/@(athree.Url).html" class="home-news__img me-3 d-block">
                                         <img src="@Url.Content("~/contents/" + athree.Avartar)" />
                                     </a>
                                     <div class="d-flex flex-column flex-fill">

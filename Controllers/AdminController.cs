@@ -2,11 +2,15 @@
 using Microsoft.Ajax.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using OfficeOpenXml;
+using System.Globalization;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 using webtuyensinh.Models;
 using webtuyensinh.ViewModels;
 using X.PagedList;
@@ -158,6 +162,7 @@ namespace webtuyensinh.Controllers
                 Title = postCreate.Title,
                 Avartar = fileName,
                 Description = postCreate.Description,
+                Url = Slugify(postCreate.Title),
                 Content = postCreate.Content,
                 CreatedAt = DateTime.Now,
             };
@@ -183,6 +188,7 @@ namespace webtuyensinh.Controllers
                             Avartar = p1.Avartar,
                             Content = p1.Content,
                             Description = p1.Description,
+                            Url = p1.Url,
                             CreatedAt = p1.CreatedAt,
                             UpdatedAt = p1.UpdatedAt,
                             CategoryId = p1.CategoryId,
@@ -191,6 +197,7 @@ namespace webtuyensinh.Controllers
                         )
                     .Where(p => p.Id == id)
                     .FirstOrDefault();
+
             string tags = JsonConvert.SerializeObject(_context.PostTagModel
                 .Where(t => t.PostID == id)
                 .Select(pt => new { 
@@ -221,6 +228,7 @@ namespace webtuyensinh.Controllers
                 CategoryId = postCreate.CategoryId,
                 Title = postCreate.Title,
                 Description = postCreate.Description,
+                Url = Slugify(postCreate.Title),
                 Content = postCreate.Content,
                 UpdatedAt = DateTime.Now,
             };
@@ -276,6 +284,7 @@ namespace webtuyensinh.Controllers
         [HttpPost]
         public async Task<IActionResult> CategoryCreate(CategoryModel category)
         {
+            category.Url = Slugify(category.Name);
             category.CreatedAt = DateTime.Now;
             _context.CategoryModel.Add(category);
             _context.SaveChanges();
@@ -293,6 +302,7 @@ namespace webtuyensinh.Controllers
         [HttpPost]
         public async Task<IActionResult> CategoryUpdate(CategoryModel category)
         {
+            category.Url = Slugify(category.Name);
             category.UpdatedAt = DateTime.Now;
             _context.CategoryModel.Update(category);
             _context.SaveChanges();
@@ -487,6 +497,34 @@ namespace webtuyensinh.Controllers
                 _context.PostTagModel.Add(postTags);
             }
             _context.SaveChanges();
+        }
+
+
+        public string Slugify(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+            {
+                throw new ArgumentException("input");
+            }
+
+            var normalizedString = input.Normalize(NormalizationForm.FormKD);
+            var stringBuilder = new StringBuilder();
+
+            foreach (char c in normalizedString)
+            {
+                UnicodeCategory category = CharUnicodeInfo.GetUnicodeCategory(c);
+
+                if (category == UnicodeCategory.LowercaseLetter || category == UnicodeCategory.UppercaseLetter || category == UnicodeCategory.DecimalDigitNumber)
+                {
+                    stringBuilder.Append(c);
+                }
+                else if (c == ' ' || c == '-')
+                {
+                    stringBuilder.Append("-");
+                }
+            }
+
+            return stringBuilder.ToString().ToLower();
         }
     }
 

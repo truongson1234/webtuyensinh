@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using NuGet.Protocol;
 using webtuyensinh.Models;
 using webtuyensinh.ViewModels;
@@ -31,31 +32,42 @@ namespace webtuyensinh.Controllers
             return View(model);
         }
         [HttpGet]
-        [Route("/categories/{id}")]
-        public IActionResult PostsForCategory(int id)
+        [Route("/blogs/{url}")]
+        public IActionResult PostsForCategory(string url)
         {
-            var cate = _context.CategoryModel
-                .Where(c =>  c.Id == id)
-                .Select(c => new CategoryModel
-                {
-                    Id = c.Id,
-                    Name = c.Name,
-                    Description = c.Description,
-                    CreatedAt = c.CreatedAt,
-                    UpdatedAt = c.UpdatedAt,
-                    Posts = _context.PostModel.Where(p => p.CategoryId == id).ToList()
-                })
-                .First();
-            var categories = _context.CategoryModel.Where(c => c.Name.Contains(cate.Name)).ToList();
-
-            var model = new CategoryViewModel
+            var model = new CategoryViewModel();
+            var cate = _context.CategoryModel.Where(p => p.Url.Contains(url));
+            if(cate.Any())
             {
-                Category = cate,
-                Categories = categories,
-            };
+                var posts = _context.PostModel
+                                .Join(_context.CategoryModel,
+                                        p => p.CategoryId,
+                                        c => c.Id,
+                                        (p, c) => new PostModel
+                                        {
+                                            Id = p.Id,
+                                            Title = p.Title,
+                                            Avartar = p.Avartar,
+                                            Content = p.Content,
+                                            Description = p.Description,
+                                            Url = p.Url,
+                                            CreatedAt = p.CreatedAt,
+                                            UpdatedAt = p.UpdatedAt,
+                                            CategoryId = p.CategoryId,
+                                            Category = c,
+                                        }
+                                        )
+                                .Where(p => p.CategoryId == cate.First().Id)
+                                .ToList();
+                model.Category = cate.First();
+                model.Posts = posts;
+            }
+
             return View(model);
         }
-        public IActionResult Details(int id)
+        [HttpGet]
+        [Route("/blogs/{url}.html")]
+        public IActionResult Details(string url)
         {
             var post = _context.PostModel
                 .Join(_context.CategoryModel,
@@ -68,16 +80,17 @@ namespace webtuyensinh.Controllers
                             Avartar = p1.Avartar,
                             Content = p1.Content,
                             Description = p1.Description,
+                            Url = p1.Url,
                             CreatedAt = p1.CreatedAt,
                             UpdatedAt = p1.UpdatedAt,
                             CategoryId = p1.CategoryId,
                             Category = c2,
                         }
                         )
-                .Where(p => p.Id == id)
+                .Where(p => p.Url.Contains(url))
                 .FirstOrDefault();
 
-            var tags = _context.PostTagModel.Where(pt => pt.PostID == id).Select(pt => pt.Tag).ToList();
+            var tags = _context.PostTagModel.Where(pt => pt.PostID == post.Id).Select(pt => pt.Tag).ToList();
             var relatedPosts = _context.PostModel
                 .Where(p => p.CategoryId == post.CategoryId || p.Title.Contains(post.Title) && p.Id != post.Id)
                 .Select(p => new PostModel
@@ -87,6 +100,7 @@ namespace webtuyensinh.Controllers
                     Avartar = p.Avartar,
                     Content = p.Content,
                     Description = p.Description,
+                    Url = p.Url,
                     CreatedAt = p.CreatedAt,
                     UpdatedAt = p.UpdatedAt,
                     CategoryId = p.CategoryId,
