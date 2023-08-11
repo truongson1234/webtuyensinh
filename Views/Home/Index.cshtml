@@ -156,10 +156,10 @@
                             @foreach(var aone in Model.ArticleCateOne)
                             {
                                 <div class="home-news__article extra">
-                                    <a href="/blogs/@(aone.Url).html" class="home-news__img me-3 d-block">
+                                    <a href="/blogs/@(aone.Url).html" class="home-news__img me-3 d-block flex-shrink-0">
                                         <img src="@Url.Content("~/contents/" + aone.Avartar)" />
                                     </a>
-                                    <div class="d-flex flex-column flex-fill">
+                                    <div class="d-flex flex-column flex-fill flex-grow-1">
                                         <span class="home-news__category">@aone.Category.Name</span>
                                         <h4 class="home-news__title">@aone.Title</h4>
                                     </div>
@@ -173,10 +173,10 @@
                             @foreach(var atwo in Model.ArticleCateTwo)
                             {
                                 <div class="home-news__article extra">
-                                    <a href="/blogs/@(atwo.Url).html" class="home-news__img me-3 d-block">
+                                    <a href="/blogs/@(atwo.Url).html" class="home-news__img me-3 d-block flex-shrink-0">
                                         <img src="@Url.Content("~/contents/" + atwo.Avartar)" />
                                     </a>
-                                    <div class="d-flex flex-column flex-fill">
+                                    <div class="d-flex flex-column flex-fill flex-grow-1">
                                         <span class="home-news__category">@atwo.Category.Name</span>
                                         <h4 class="home-news__title">@atwo.Title</h4>
                                     </div>
@@ -189,10 +189,10 @@
                             @foreach(var athree in Model.ArticleCateThree)
                             {
                                 <div class="home-news__article extra">
-                                    <a href="/blogs/@(athree.Url).html" class="home-news__img me-3 d-block">
+                                    <a href="/blogs/@(athree.Url).html" class="home-news__img me-3 d-block flex-shrink-0">
                                         <img src="@Url.Content("~/contents/" + athree.Avartar)" />
                                     </a>
-                                    <div class="d-flex flex-column flex-fill">
+                                    <div class="d-flex flex-column flex-fill flex-grow-1">
                                         <span class="home-news__category">@athree.Category.Name</span>
                                         <h4 class="home-news__title">@athree.Title</h4>
                                     </div>
@@ -739,5 +739,8 @@
         $(".home-introduce__btn-signin").click(() => {
             $(".home-introduce__form").toggleClass("none")
         })
+        $(".home-introduce__btn-close").click() => {
+            $(".home-introduce__form").removeClass("none")
+        }
     </script>
 }

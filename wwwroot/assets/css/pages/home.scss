@@ -210,8 +210,6 @@
         flex-direction: column;
 
         &.main .home-news__img {
-            max-width: 400px;
-            max-height: 250px;
         }
 
         .home-news__img {
@@ -253,9 +251,8 @@
             margin-bottom: 15px;
 
             .home-news__img {
-                min-width: 182px;
+                width: 182px;
                 max-height: 120px;
-                flex-shrink: 0;
             }
 
             .home-news__category {
@@ -265,10 +262,15 @@
             }
 
             .home-news__title {
+                width: 150px;
                 color: #000;
                 font-size: 16px;
                 font-weight: 600;
                 line-height: 22px;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
             }
         }
     }

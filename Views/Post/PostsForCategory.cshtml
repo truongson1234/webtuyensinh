@@ -21,7 +21,7 @@
         </nav>
     </div>
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-12 col-md-6 col-lg-3">
             <div class="position-sticky posts-cate__bar" style="top: 2rem;">
                 <h5 class="mb-3 posts-cate__tt p-3 bg-success text-white">Danh mục bài viết</h5>
                 <div class="mb-3 posts-cate__info">
@@ -132,7 +132,7 @@
                 }
             </div>
         </div>
-        <div class="col-md-9">
+        <div class="col-12 col-md-6 col-lg-9">
             <div class="row">
                 @if (Model.Posts == null || Model.Posts.Count() == 0)
                 {
@@ -143,7 +143,7 @@
                 {
                     @foreach (var post in Model.Posts)
                     {
-                        <div class="col-12 col-md-4">
+                        <div class="col-12 col-lg-4">
                             <div class="posts-cate__main mb-3">
                                 <a class="blog-post-img" href="/blogs/@(post.Url).html">
                                     <img src="@Url.Content("~/contents/" + post.Avartar)" />
